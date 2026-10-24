@@ -1,11 +1,10 @@
 import { books } from "../data/books";
-import ProductoCard from "../components/ProductoCard";
+import ProductCard from "../components/ProductCard";
 import { useState } from "react";
-import "./Productos.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "./Products.css";
 
 
-function Productos() {
+function Products() {
   const [busqueda, setBusqueda] = useState("");
   const librosFiltrados = books.filter((book) =>
   book.title.toLowerCase().includes(busqueda.toLowerCase())
@@ -24,11 +23,11 @@ function Productos() {
 </div>
       <section className="catalogo">
         {librosFiltrados.map((book) => (
-          <ProductoCard key={book.id} book={book} />
+          <ProductCard key={book.id} book={book} />
         ))}
       </section>
     </main>
   );
 }
 
-export default Productos;
+export default Products;

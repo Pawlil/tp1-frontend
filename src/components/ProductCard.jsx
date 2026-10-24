@@ -1,8 +1,7 @@
-
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
-function ProductoCard({ book }) {
+function ProductoCard({book}) {
   const disponible = book.stock > 0;
 
   return (

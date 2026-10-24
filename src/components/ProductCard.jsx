@@ -1,40 +1,57 @@
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import "./ProductCard.css";
 
-function ProductoCard({book}) {
+function ProductoCard({ book }) {
   const disponible = book.stock > 0;
 
   return (
-    <Card className="h-100">
-      <Card.Img
-        variant="top"
-        src={book.image}
-        alt={book.title}
-        style={{
-          height: "320px",
-          objectFit: "contain",
-          padding: "12px",
-        }}
-      />
+    <Card className="product-card h-100">
+      <div className="product-card-image">
+        <Card.Img
+          variant="top"
+          src={book.image}
+          alt={book.title}
+        />
+      </div>
 
       <Card.Body className="d-flex flex-column">
-        <Card.Title>{book.title}</Card.Title>
-        <Card.Text>
-          <strong>Categoría:</strong> {book.category}
+        <span className="product-card-category">
+          {book.category}
+        </span>
+
+        <Card.Title className="product-card-title">
+          {book.title}
+        </Card.Title>
+
+        <Card.Text className="product-card-description">
+          {book.description}
         </Card.Text>
-        <Card.Text>
-          <strong>Precio:</strong> ${book.price}
-        </Card.Text>
-        <Card.Text>{book.description}</Card.Text>
-        <Card.Text>
-          <strong>Disponibilidad:</strong>{" "}
-          {disponible ? "Disponible" : "Sin stock"}
-        </Card.Text>
+
+        <div className="product-card-info">
+          <span className="product-card-price">
+            ${book.price}
+          </span>
+
+          <span
+            className={`product-card-stock ${
+              disponible ? "available" : "unavailable"
+            }`}
+          >
+            {disponible ? "Disponible" : "Sin stock"}
+          </span>
+        </div>
+
         <div className="mt-auto d-flex flex-column gap-2">
-          <Button variant="light">
+          <Button variant="light" className="product-card-detail">
             Ver detalle
           </Button>
-          <Button variant="light" disabled={!disponible}>
+
+          <Button
+            variant="light"
+            className="product-card-cart"
+            disabled={!disponible}
+          >
             Agregar al carrito
           </Button>
         </div>

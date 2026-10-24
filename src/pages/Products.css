@@ -1,13 +1,13 @@
 .catalogo {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 20px;
   padding: 20px;
 }
 
 @media (max-width: 900px) {
   .catalogo {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -17,19 +17,193 @@
   }
 }
 
+
 .buscador {
-  background: transparent;
-  border: 1px solid #F2C6B4;
-  border-radius: 10px;
+  background-color: #FFFFFF;
+  color: #252525;
+  border: 1px solid #E5E5DF;
+  border-radius: 12px;
   padding: 14px 18px;
-  font-size: 1.1rem;
-  box-shadow: none;
+  font-size: 1rem;
+  font-weight: 400;
+  box-shadow: 0 2px 8px rgba(37, 37, 37, 0.03);
   outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.buscador::placeholder {
+  color: #929292;
+  opacity: 1;
+}
+
+.buscador:hover {
+  border-color: #C9CFE8;
 }
 
 .buscador:focus,
 .buscador:active {
-  border-color: #F2C6B4 !important;
-  box-shadow: none !important;
+  background-color: #FFFFFF;
+  color: #252525;
+  border-color: #3157D5 !important;
+  box-shadow: 0 0 0 3px rgba(49, 87, 213, 0.10) !important;
   outline: none !important;
+}
+
+
+.boton-filtros {
+  display: inline-flex;
+  align-items: center;
+  background-color: #FFFFFF;
+  color: #3157D5;
+  border: 1px solid #D9DFF5;
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  box-shadow: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.boton-filtros:hover,
+.boton-filtros:focus,
+.boton-filtros:active,
+.boton-filtros.show {
+  background-color: #EEF1FF !important;
+  color: #3157D5 !important;
+  border-color: #3157D5 !important;
+  box-shadow: none !important;
+}
+
+.boton-filtros::after {
+  margin-left: 12px;
+  vertical-align: middle;
+}
+
+.contenido-boton-filtros {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.menu-filtros {
+  background-color: #FFFFFF;
+  color: #252525;
+  border: 1px solid #E8E7E1;
+  border-radius: 12px;
+  padding: 18px !important;
+  box-shadow: 0 8px 24px rgba(37, 37, 37, 0.10);
+}
+
+.menu-filtros .form-label {
+  display: block;
+  color: #252525;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 9px;
+}
+
+.selector-categoria {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  background-color: #FAFAF7;
+  color: #252525;
+  border: 1px solid #E4E4DC;
+  border-radius: 10px;
+  font-size: 0.92rem;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.selector-categoria:hover,
+.selector-categoria.abierto {
+  background-color: #FFFFFF;
+  border-color: #3157D5;
+}
+
+.selector-categoria i {
+  color: #3157D5;
+  font-size: 0.8rem;
+}
+
+.opciones-categorias {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px;
+  padding: 8px;
+  background-color: #FFFFFF;
+  border: 1px solid #E8E7E1;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(37, 37, 37, 0.08);
+  max-height: 200px;
+  overflow-y: auto;
+  animation: aparecer-categorias 0.15s ease-out;
+}
+
+.opcion-categoria {
+  width: 100%;
+  padding: 10px 12px;
+  background: transparent;
+  color: #252525;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 400;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.opcion-categoria:hover {
+  background-color: #F3F5FF;
+  color: #3157D5;
+}
+
+.opcion-categoria.seleccionada {
+  background-color: #EEF1FF;
+  color: #3157D5;
+  font-weight: 600;
+}
+
+.selector-categoria:focus-visible,
+.opcion-categoria:focus-visible {
+  outline: 2px solid #3157D5;
+  outline-offset: 2px;
+}
+
+@keyframes aparecer-categorias {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.boton-limpiar-filtros {
+  background-color: #FFFFFF;
+  color: #3157D5;
+  border: 1px solid #D9DFF5;
+  border-radius: 9px;
+  padding: 10px;
+  font-weight: 600;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.boton-limpiar-filtros:hover,
+.boton-limpiar-filtros:focus {
+  background-color: #EEF1FF;
+  border-color: #3157D5;
+  color: #3157D5;
 }

@@ -1,6 +1,7 @@
 import { books } from "../data/books";
+import React from "react";
 
-function Products() {
+function ProductCard() {
   return (
     <div>
       {books.map((book) => (
@@ -16,4 +17,4 @@ function Products() {
   );
 }
 
-export default Products;
+export default ProductCard;

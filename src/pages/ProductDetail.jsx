@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { books } from "../data/books";
@@ -35,6 +36,9 @@ function ProductDetail() {
     setMensaje(`Se agregó "${title}" al carrito.`);
   };
 
+=======
+const ProductDetail = () => {
+>>>>>>> origin/carrito_compras_staccia
   return (
     <Container className="detalle-producto py-5">
       <Button

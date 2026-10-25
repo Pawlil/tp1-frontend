@@ -111,7 +111,7 @@ font-weight: 600;
 padding: 10px;
 }
 
-.product-card-cart:hover() {
+.product-card-cart:hover {
 background-color: #EEF1FF;
 border-color: #3157D5;
 color: #2545B0;

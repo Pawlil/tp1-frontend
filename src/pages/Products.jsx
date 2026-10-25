@@ -39,7 +39,7 @@ function Products() {
 
   return (
     <main>
-      <h1 className="text-center">Nuestro catálogo</h1>
+      <h1 className="titulo text-center">Nuestro catálogo</h1>
 
       <div className="container my-4">
         <input

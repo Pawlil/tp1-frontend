@@ -5,6 +5,11 @@
   padding: 20px;
 }
 
+.titulo{
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
 @media (max-width: 900px) {
   .catalogo {
     grid-template-columns: repeat(2, minmax(0, 1fr));

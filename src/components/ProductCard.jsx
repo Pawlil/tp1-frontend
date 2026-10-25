@@ -1,9 +1,14 @@
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 import "./ProductCard.css";
 
 function ProductoCard({ book }) {
   const disponible = book.stock > 0;
+  const { addToCart, cartItems } = useCart();
+  const cantidadEnCarrito = cartItems.find((item) => item.id === book.id)?.quantity || 0;
+  const sinUnidadesDisponibles = !disponible || cantidadEnCarrito >= book.stock;
 
   return (
     <Card className="product-card h-100">
@@ -43,16 +48,17 @@ function ProductoCard({ book }) {
         </div>
 
         <div className="mt-auto d-flex flex-column gap-2">
-          <Button variant="light" className="product-card-detail">
+          <Button as={Link} to={`/producto/${book.id}`} variant="light" className="product-card-detail">
             Ver detalle
           </Button>
 
           <Button
             variant="light"
             className="product-card-cart"
-            disabled={!disponible}
+            disabled={sinUnidadesDisponibles}
+            onClick={() => addToCart(book)}
           >
-            Agregar al carrito
+            {sinUnidadesDisponibles ? (disponible ? "Stock completo en carrito" : "Sin stock") : "Agregar al carrito"}
           </Button>
         </div>
       </Card.Body>

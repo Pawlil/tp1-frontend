@@ -1,10 +1,7 @@
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
-<<<<<<< HEAD
-=======
 import { useCart } from "../context/CartContext";
->>>>>>> origin/carrito_compras_staccia
 import "./ProductCard.css";
 
 function ProductoCard({ book }) {
@@ -14,20 +11,13 @@ function ProductoCard({ book }) {
   const sinUnidadesDisponibles = !disponible || cantidadEnCarrito >= book.stock;
 
   return (
-    <Card className="product-card h-100"
-    >
-      <div className="product-card-image"
-      >
-        <Link as={Link}
-          to={"/producto/" + book.id} className="d-block text-decoration-none">
-          <Card.Img
-
-
-            variant="top"
-            src={book.image}
-            alt={book.title}
-          />
-        </Link>
+    <Card className="product-card h-100">
+      <div className="product-card-image">
+        <Card.Img
+          variant="top"
+          src={book.image}
+          alt={book.title}
+        />
       </div>
 
       <Card.Body className="d-flex flex-column">
@@ -49,24 +39,16 @@ function ProductoCard({ book }) {
           </span>
 
           <span
-            className={`product-card-stock ${disponible ? "available" : "unavailable"
-              }`}
+            className={`product-card-stock ${
+              disponible ? "available" : "unavailable"
+            }`}
           >
             {disponible ? "Disponible" : "Sin stock"}
           </span>
         </div>
 
         <div className="mt-auto d-flex flex-column gap-2">
-<<<<<<< HEAD
-          <Button
-            as={Link}
-            to={"/producto/" + book.id}
-            variant="light"
-            className="product-card-detail"
-          >
-=======
           <Button as={Link} to={`/producto/${book.id}`} variant="light" className="product-card-detail">
->>>>>>> origin/carrito_compras_staccia
             Ver detalle
           </Button>
 

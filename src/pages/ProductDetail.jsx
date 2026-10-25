@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { books } from "../data/books";
@@ -18,7 +17,12 @@ function ProductDetail() {
     return (
       <Container className="detalle-producto py-5 text-center">
         <h2>Libro no encontrado</h2>
-        <Button as={Link} to="/productos" variant="outline-primary" className="mt-3">
+        <Button
+          as={Link}
+          to="/productos"
+          variant="outline-primary"
+          className="mt-3"
+        >
           Volver al catálogo
         </Button>
       </Container>
@@ -36,9 +40,6 @@ function ProductDetail() {
     setMensaje(`Se agregó "${title}" al carrito.`);
   };
 
-=======
-const ProductDetail = () => {
->>>>>>> origin/carrito_compras_staccia
   return (
     <Container className="detalle-producto py-5">
       <Button
@@ -145,7 +146,10 @@ const ProductDetail = () => {
             <ul className="lista-especificaciones">
               <li><strong>Categoría:</strong> {category}</li>
               <li><strong>Autor:</strong> {author}</li>
-              <li><strong>Stock disponible:</strong> {hayStock ? stock : "Agotado"}</li>
+              <li>
+                <strong>Stock disponible:</strong>{" "}
+                {hayStock ? stock : "Agotado"}
+              </li>
               <li><strong>Formato:</strong> Físico</li>
               <li><strong>Idioma:</strong> Español</li>
             </ul>

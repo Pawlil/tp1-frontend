@@ -2,7 +2,8 @@
 
 .custom-navbar {
   background-color: #3157D5;
-  padding: 12px 0;
+  padding: 12px 16px;
+  box-sizing: border-box;
 }
 
 
@@ -99,6 +100,11 @@
 
 
 @media (max-width: 991.98px) {
+  .custom-navbar .navbar-toggle-custom {
+    margin-right: 4px;
+    flex-shrink: 0;
+  }
+
   .custom-navbar .navbar-links {
     align-items: stretch;
     gap: 4px;

@@ -3,11 +3,13 @@ import { useParams, Link } from "react-router-dom";
 import { books } from "../data/books";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { CartPlus, Truck } from "react-bootstrap-icons";
+import { useCart } from "../context/CartContext";
 import "./ProductDetail.css";
 
 function ProductDetail() {
   const { id } = useParams();
   const book = books.find((b) => b.id === parseInt(id, 10));
+  const { addToCart } = useCart();
 
   const [cantidad, setCantidad] = useState(1);
   const [mensaje, setMensaje] = useState("");
@@ -35,7 +37,7 @@ function ProductDetail() {
 
   const agregarAlCarrito = () => {
     if (!hayStock) return;
-
+    addToCart(book)
     setTipoMensaje("success");
     setMensaje(`Se agregó "${title}" al carrito.`);
   };

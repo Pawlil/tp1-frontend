@@ -1,4 +1,5 @@
 import {Card, Row, Col, Button} from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function RecsCard({id, title, description, image}) {
     return (
@@ -18,11 +19,9 @@ function RecsCard({id, title, description, image}) {
                     <Card.Text className="text-muted">
                     {description}
                     </Card.Text>
-                    {/* no tengo pulleado el product details asi que lo dejo aca asi :#
-                        <Button as={Link} to={`/productDetails/${id}`}>
+                        <Button as={Link} to={`/producto/${id}`}>
                         Ver más
                         </Button> 
-                    */}
                 </Card.Body>
                 </Col>
             </Row>

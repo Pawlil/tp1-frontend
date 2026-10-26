@@ -1,0 +1,24 @@
+.recs-card{
+    margin-bottom: 1rem;
+    border:none;
+    box-shadow:none;
+    padding: 1rem;
+}
+
+#recsCard-button{
+    background-color: #3157D5;
+    transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+#recsCard-button:hover{
+    background-color: #2546B5;
+    transform: translateY(-2px) scale(1.02);
+}
+
+#cardimg{
+    object-fit: contain;
+    height:300px;
+    width: 100%;
+}

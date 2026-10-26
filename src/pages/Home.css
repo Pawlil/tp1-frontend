@@ -1,28 +1,64 @@
 .home-main-sections{
     margin-bottom: 3rem;
     box-shadow: 2px 0px 10px rgba(179, 179, 181, 0.1);
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     padding: 1rem;
+    border: 1px solid #E8E7E1
 }
 
-.banner-overlay{
+#banner-overlay{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-color: rgba(66, 74, 129, 0.5);
+    background-color: rgba(26, 19, 19, 0.5);;
 }
+
 #banner{
     padding: 0;
 }
 #banner img{
-    height: 320px;
+    height: 20rem;
     object-fit: cover;
+}
+
+#info-section{
+    box-shadow: 2px 0px 10px rgba(179, 179, 181, 0.1);
+    margin-top: 2rem;
+    border-radius: 0.5rem;
+    border: 1px solid #E8E7E1
+}
+.info{
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    background-color: #FAFAF7;
+    font-weight: 500;
+    padding: 1.5rem;
+}
+.info:last-child{
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    border-left: 1px solid rgb(227, 227, 244, 0.5);
+}
+.info:first-child{
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
 }
 
 .carousel-header{
     text-align: center;
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin: 0;
+}
+
+#recs-section{
+    background-color: #FAFAF7;
+}
+#recs-section .card {
+  background-color: #FAFAF7 !important;
 }
 
 .redirects{
@@ -30,18 +66,7 @@
     text-align: center;
 }
 
-/*
-
-#carousel-recs{
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../assets/fondoCarousel.jpg');
-    background-size: cover;
-    background-position: center;
-    color: white;
+.icon{
+    margin-right: 1rem;
+    color: #3157D5;
 }
-
-.carousel-recs-item{
-    background-color: transparent;
-}
-#carousel-recs .card {
-    background-color: transparent;
-}*/

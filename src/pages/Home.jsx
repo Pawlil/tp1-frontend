@@ -1,83 +1,74 @@
 import { Carousel, Row, Col, Container, Image, Card } from "react-bootstrap";
 import { books } from "../data/books";
+import { Cash, Truck } from "react-bootstrap-icons";
 import RecsCard from "../components/RecsCard";
 import LinkCard from "../components/LinkCard";
-/*import imagenCatalogo from "../assets/fondoCatalogo.jpg";*/
 import imagenBanner from "../assets/banner.jpg";
 import "./Home.css";
 
 const Home = () => {
+  const recs= [0,8,1,6,4]
+  
   return (
     <div>
       <div className="home-main-sections" id="banner">
         <Card className="text-white">
           <Card.Img src={imagenBanner} alt="Imagen del banner"/>
-          <Card.ImgOverlay className="banner-overlay">
-            <Card.Title><h1>Bienvenidos a Biblio-Tec</h1></Card.Title>
-            <Card.Text>
-              Somos una tienda con más de 20 años de antiguedad.
-            </Card.Text>
+          <Card.ImgOverlay id="banner-overlay">
+            <Card.Text>Bienvenidos a</Card.Text>
+            <Card.Title> <h1>Biblio-Tec</h1> </Card.Title>
+            <Card.Text> Somos una tienda con más de 20 años de antiguedad. </Card.Text>
           </Card.ImgOverlay>
         </Card>
       </div>
 
-      <div className="home-main-sections">
-        <h2 className="carousel-header">Recomendaciones</h2>
-        <p className="carousel-header">Los libros más populares de este último mes.</p>
-       <Carousel id="carousel-recs" className="carousel-dark">
-          <Carousel.Item className="carousel-recs-item">
-            <RecsCard 
-              id={books[0].id}
-              title={books[0].title}
-              description={books[0].description}
-              image={books[0].image}
-            />
-          </Carousel.Item>
-          <Carousel.Item className="carousel-recs-item">
-            <RecsCard 
-              id={books[8].id}
-              title={books[8].title}
-              description={books[8].description}
-              image={books[8].image}
-            />
-          </Carousel.Item>
-          <Carousel.Item className="carousel-recs-item">
-            <RecsCard 
-              id={books[1].id}
-              title={books[1].title}
-              description={books[1].description}
-              image={books[1].image}
-            />
-          </Carousel.Item>
-          <Carousel.Item className="carousel-recs-item">
-            <RecsCard 
-              id={books[6].id}
-              title={books[6].title}
-              description={books[6].description}
-              image={books[6].image}
-            />
-          </Carousel.Item>
+      <div className="home-main-sections" id="recs-section">
+        <h2 className="carousel-header">Destacados y recomendados</h2>  
+        <Carousel id="carousel-recs" className="carousel-dark">
+          {recs.map((index) => {
+            const book = books[index]; 
+
+            return (
+              <Carousel.Item key={book.id} className="carousel-recs-item">
+                <RecsCard 
+                  id={book.id}
+                  title={book.title}
+                  description={book.description}
+                  image={book.image}
+                />
+              </Carousel.Item>
+            );
+          })}
         </Carousel>
       </div>
 
-      <div className="home-main-sections">
-        <LinkCard className="redirects"
-          title="Explora nuestro Catálogo"
-          direction="productos" 
-        />
-        <LinkCard className="redirects"
-          title="Novedades"
-          direction="novedades" 
-        />
-        <LinkCard className="redirects"
-          title="Contactanos"
-          direction="contacto" 
-        />
-      </div>
 
-      <div>
-        <p>seccion de acerca de envios~ Queda para hacer, facilito</p>
-      </div>
+      <Row id="redirects-section">
+        <Col md={4}>
+          <LinkCard className="redirects"
+            title="Explora nuestro Catálogo"
+            direction="productos" 
+          />
+        </Col>
+        <Col>
+          <LinkCard className="redirects"
+            title="Novedades"
+            direction="novedades" 
+          />
+        </Col>
+        <Col>
+          <LinkCard className="redirects"
+            title="Contactanos"
+            direction="contacto" 
+          />
+        </Col>
+      </Row>
+      <Container id="info-section">
+        <Row>
+          <Col className="info">  <Truck size={22} className="icon"/> Envios a todo el pais. </Col>
+          <Col className="info"> <Cash size={22} className="icon"/>Pagos en 6 cuotas sin interés.</Col>
+        </Row>
+      </Container>      
     </div>
   );
 };

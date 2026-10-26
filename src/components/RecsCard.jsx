@@ -1,16 +1,16 @@
 import {Card, Row, Col, Button} from "react-bootstrap";
 import { Link } from "react-router-dom";
+import "./recsCard.css";
 
 function RecsCard({id, title, description, image}) {
     return (
-       <Card className= "mb-3 border-0 shadow-none p-3">
+       <Card className= "recs-card">
             <Row className="align-items-center">
                 <Col md={4}>
-                    <Card.Img 
+                    <Card.Img id="cardimg"
                         src={image}
                         alt={title}
                         className="rounded"
-                        style={{ objectFit: 'contain', height:'400px', width: '100%'}}
                     />
                 </Col>
                 <Col md={7}>
@@ -19,7 +19,7 @@ function RecsCard({id, title, description, image}) {
                     <Card.Text className="text-muted">
                     {description}
                     </Card.Text>
-                        <Button as={Link} to={`/producto/${id}`}>
+                        <Button as={Link} to={`/producto/${id}`} id="recsCard-button">
                         Ver más
                         </Button> 
                 </Card.Body>

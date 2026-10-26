@@ -4,11 +4,13 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { NavLink } from 'react-router-dom';
 import { Cart3 } from 'react-bootstrap-icons';
+import { useCart } from '../context/CartContext';
 import logoImg from '../assets/logo.jpg';
 import "./navBar.css";
 
 
 function StoreNavbar() {
+  const { totalItems } = useCart();
   return (
     <Navbar expand="lg" className="custom-navbar">
       <Container>
@@ -59,6 +61,7 @@ function StoreNavbar() {
               title="Carrito de compras"
             >
               <Cart3 size={24} />
+              {totalItems > 0 && <span className="navbar-cart-count">{totalItems}</span>}
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

@@ -2,7 +2,8 @@
 
 .custom-navbar {
   background-color: #3157D5;
-  padding: 12px 0;
+  padding: 12px 16px;
+  box-sizing: border-box;
 }
 
 
@@ -89,6 +90,25 @@
   display: block;
 }
 
+.custom-navbar .navbar-cart {
+  position: relative;
+}
+
+.navbar-cart-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  margin-left: 6px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: #FFFFFF;
+  color: #3157D5;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
 
 .custom-navbar .navbar-toggle-custom {
   background-color: #FAFAF7;
@@ -99,6 +119,11 @@
 
 
 @media (max-width: 991.98px) {
+  .custom-navbar .navbar-toggle-custom {
+    margin-right: 4px;
+    flex-shrink: 0;
+  }
+
   .custom-navbar .navbar-links {
     align-items: stretch;
     gap: 4px;

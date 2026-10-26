@@ -1,0 +1,87 @@
+.detalle-producto {
+  background-color: var(--color-bg);
+}
+
+.sombra-libro {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  max-height: 500px;
+  object-fit: cover;
+}
+
+.btn-azul {
+  background-color: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: opacity 0.2s ease;
+}
+
+.btn-azul:hover {
+  opacity: 0.9;
+}
+
+.selector-cantidad {
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  background: white;
+  height: 42px;
+}
+
+.selector-cantidad button {
+  background: none;
+  border: none;
+  width: 35px;
+  font-size: 1.2rem;
+  color: #495057;
+  cursor: pointer;
+}
+
+.selector-cantidad button:hover {
+  background-color: #f8f9fa;
+}
+
+.selector-cantidad input {
+  width: 40px;
+  border: none;
+  text-align: center;
+  font-weight: bold;
+  outline: none;
+}
+
+.envio-caja {
+  background-color: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+}
+
+.input-cp {
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+}
+
+.lista-especificaciones li {
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  color: #495057;
+}
+
+.lista-especificaciones strong {
+  color: #212529;
+}
+
+.btn-azul {
+  background-color: #3157D5 !important;
+  border-color: #3157D5 !important;
+  color: #FFFFFF !important;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-azul:hover:not(:disabled) {
+  background-color: #2546B5 !important;
+  border-color: #2546B5 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}

@@ -1,0 +1,39 @@
+.home-main-sections{
+    margin-bottom: 3rem;
+    box-shadow: 2px 0px 10px rgba(179, 179, 181, 0.1);
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+#banner{
+    padding: 0;
+}
+#banner img{
+    height: 320px;
+    object-fit: cover;
+}
+
+.carousel-header{
+    text-align: center;
+}
+
+.redirects{
+    padding: 1rem;
+    text-align: center;
+}
+
+/*
+
+#carousel-recs{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../assets/fondoCarousel.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+.carousel-recs-item{
+    background-color: transparent;
+}
+#carousel-recs .card {
+    background-color: transparent;
+}*/

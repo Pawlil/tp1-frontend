@@ -22,14 +22,6 @@ function App() {
           <Route path="/producto/:id" element={<ProductDetail />} />
           <Route path="/carrito" element={<Cart />} />
           <Route path="/contacto" element={<Contact />} />
-          <Route
-            path="*"
-            element={
-              <h2 className="text-center mt-5">
-                404 - Página no encontrada
-              </h2>
-            }
-          />
         </Routes>
       </main>
       <Footer/>

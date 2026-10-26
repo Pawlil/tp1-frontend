@@ -13,7 +13,7 @@ const Home = () => {
         <Card className="text-white">
           <Card.Img src={imagenBanner} alt="Imagen del banner"/>
           <Card.ImgOverlay className="banner-overlay">
-            <Card.Title>Bienvenidos a Biblio-Tec</Card.Title>
+            <Card.Title><h1>Bienvenidos a Biblio-Tec</h1></Card.Title>
             <Card.Text>
               Somos una tienda con más de 20 años de antiguedad.
             </Card.Text>
@@ -60,18 +60,24 @@ const Home = () => {
         </Carousel>
       </div>
 
-      {/*className="redirects"
       <div className="home-main-sections">
-        <RedirectCard 
+        <LinkCard className="redirects"
           title="Explora nuestro Catálogo"
-          direction="Products" 
+          direction="productos" 
         />
-          <RedirectCard 
+        <LinkCard className="redirects"
+          title="Novedades"
+          direction="novedades" 
+        />
+        <LinkCard className="redirects"
           title="Contactanos"
-          direction="Products" 
+          direction="contacto" 
         />
-      </div>*/}
+      </div>
 
+      <div>
+        <p>seccion de acerca de envios~ Queda para hacer, facilito</p>
+      </div>
     </div>
   );
 };

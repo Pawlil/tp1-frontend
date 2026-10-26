@@ -5,6 +5,14 @@
     padding: 1rem;
 }
 
+.banner-overlay{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(72, 77, 104, 0.5);
+}
 #banner{
     padding: 0;
 }
@@ -18,7 +26,7 @@
 }
 
 .redirects{
-    padding: 1rem;
+    padding: 5rem;
     text-align: center;
 }
 

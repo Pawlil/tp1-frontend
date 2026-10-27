@@ -56,7 +56,9 @@ export const validateForm = (data) => {
         newErrors.phone = "El numero de telefono no es valido";
     } else if (data.phone.trim().length > 15){
         newErrors.phone = "El numero de telefono no es valido";
-    }
+    } else if (!/^\d+$/.test(data.phone.trim())) {
+    newErrors.phone = "El teléfono solo puede contener números";
+}
 
     //Val. direccion
     if(data.address.trim() === ""){

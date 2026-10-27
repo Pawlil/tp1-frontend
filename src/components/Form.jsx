@@ -1,4 +1,9 @@
 import { useState } from "react";
+import { validateForm } from '../validators/formValidators.js';
+import "./Form.css";
+import instagramLogo from "../assets/instagramLogo.png";
+import facebookLogo from "../assets/facebookLogo.png";
+import twitterXLogo from "../assets/twitterXLogo.png";
 
 export const Form = () =>{
 
@@ -17,94 +22,12 @@ export const Form = () =>{
         });
     };
 
-    //VALIDACIONES
-    // Lo ideal (creo, porque lo habla en el video) seria que Validaciones tenga su propia carpeta. 
-    // Asumo que de la siguiente forma:
-    // src-
-    //     -Validations
-    //                 -name.jsx
-    //                 -email.jsx
-    //                 -age.jsx
-    //O tambien pueden estar todas las validacioens junto en un mismo .jsx . REVISAR LOGICA.
     const [errors, setErrors] = useState({});
-
-    const validate = (data) =>{
-        
-        const newErrors={};
-
-        //Val. nombre
-        if(data.name.trim() === ""){
-            newErrors.name = "El nombre es obligatorio";
-        }else if (data.name.trim().length <= 3){
-            newErrors.name = "Nombre invalido (demasiado corto)";
-        }else if (data.name.length > 50){
-            newErrors.name = "Nombre invalido (demasiado largo)";
-        }
-
-        //Val. email
-        if(data.email.trim() === ""){
-            newErrors.email = "El mail es obligatorio";
-        }else if (!data.email.includes("@")){
-            newErrors.email = "El mail no contiene @";
-        }else if (data.email.trim().length <=6){
-            newErrors.email = "Email invalido (demasiado corto)";
-        }else if (data.email.length > 50){
-            newErrors.email = "Email invalido (demasiado largo)";
-        }else if (data.email.indexOf("@") === 0) {
-            newErrors.email = "El email no puede comenzar con @";
-        } else if (data.email.indexOf("@") !== data.email.lastIndexOf("@")) {
-            newErrors.email = "El email no puede contener más de un @";
-        } else if (data.email.indexOf(".") === -1) {
-            newErrors.email = "El email debe contener un punto (.)";
-        } else if (data.email.lastIndexOf(".") < data.email.indexOf("@")) {
-            newErrors.email = "El punto debe estar después del @";
-        } else if (data.email.lastIndexOf(".") === data.email.length - 1) {
-            newErrors.email = "El email no puede terminar con un punto";
-        } else if (data.email.includes(" ")) {
-            newErrors.email = "El email no puede contener espacios";
-        } else if (data.email.includes("@.")) {
-            newErrors.email = "No puede haber un punto inmediatamente después del @";
-        } else if (data.email.includes("..")) {
-           newErrors.email = "El email no puede contener puntos consecutivos";
-        } else if (
-            !data.email.endsWith(".com") &&
-            !data.email.endsWith(".net") &&
-            !data.email.endsWith(".org") &&
-            !data.email.endsWith(".edu") &&
-            !data.email.endsWith(".gov") &&
-            !data.email.endsWith(".io") &&
-            !data.email.endsWith(".com.ar") &&
-            !data.email.endsWith(".org.ar")
-        ){
-            newErrors.email = "La terminación del email no es válida";
-        }
-
-        //Val. telefono
-        if(data.phone.trim() === ""){
-            newErrors.phone = "El numero de telefono es obligatorio";
-        } else if (data.phone.trim().length < 8){
-            newErrors.phone = "El numero de telefono no es valido";
-        } else if (data.phone.trim().length > 15){
-            newErrors.phone = "El numero de telefono no es valido";
-        }
-
-        //Val. direccion
-        if(data.address.trim() === ""){
-            newErrors.address = "La direccion es obligatoria";
-        } else if (data.address.trim().length < 5) {
-            newErrors.address = "La dirección es demasiado corta";
-        } else if (data.address.length > 100) {
-            newErrors.address = "La dirección es demasiado larga";
-        }
-
-        return newErrors;
-    };
-    //VALIDACIONES
 
     const handleSubmit = (event) =>{
         event.preventDefault();
         
-        const newErrors = validate(formData);
+        const newErrors = validateForm(formData);
 
         setErrors(newErrors);
 
@@ -113,35 +36,45 @@ export const Form = () =>{
         }
     };
 
-   console.log(errors);
+    //console.log(errors);
     
     return (
             <div className="row g-4">
                 <div className="col-md-7">
+                
+                    <div className="contact-heading">
+                        <span className="contact-eyebrown">BIBLIO-TEC / CONTACTO</span>
+                        <h1 className="mb-4">¡Contactate con nosotros!</h1>
+                        <h6>Envianos tus datos y nos pondremos en contacto</h6>
+                    </div>
+                    
+                    {/* FORM*/}
                     <form onSubmit={handleSubmit} noValidate>
 
                         {/* NOMBRE */}
-                        <div className="mb-3">
-                            <label htmlFor="name" className="form-label">Nombre y Apellido</label>
+                        <div className="mb-3 name">
+                            <label htmlFor="name" className="form-label">Nombre y Apellido <span className="obligatorio">*</span></label>
                             <input 
                               type="text" 
                               id="name" 
                               name="name" 
-                              className={`form-control ${errors.name ? 'is-invalid': ''}`}
+                              placeholder="Escribe tu nombre"
+                              className={`form-control input-short ${errors.name ? 'is-invalid': ''}`}
                               value={formData.name}
                               onChange={handleChange}
                             />
                             {errors.name && (<div className="invalid-feedback d-block">{errors.name}</div>)}
                         </div>
 
-                        {/* MAIL */}
-                        <div className="mb-3">
-                            <label htmlFor="email" className="form-label">Email</label>
+                        {/* EMAIL */}
+                        <div className="mb-3 email">
+                            <label htmlFor="email" className="form-label">Email <span className="obligatorio">*</span></label>
                             <input 
                               type="email" 
                               id="email" 
-                              name="email" 
-                              className={`form-control ${errors.email ? 'is-invalid': ''}`}
+                              name="email"
+                              placeholder="Escribe tu email" 
+                              className={`form-control input-short ${errors.email ? 'is-invalid': ''}`}
                               value={formData.email}
                               onChange={handleChange}
                             />
@@ -149,13 +82,14 @@ export const Form = () =>{
                         </div>
 
                         {/* TELEFONO */}
-                        <div className="mb-3">
-                            <label htmlFor="phone" className="form-label">Numero de telefono</label>
+                        <div className="mb-3 phone">
+                            <label htmlFor="phone" className="form-label">Numero de teléfono <span className="obligatorio">*</span></label>
                             <input 
                               type="text" 
                               id="phone" 
-                              name="phone" 
-                              className={`form-control ${errors.phone ? 'is-invalid': ''}`}
+                              name="phone"
+                              placeholder="Escribe tu teléfono" 
+                              className={`form-control input-short ${errors.phone ? 'is-invalid': ''}`}
                               value={formData.phone}
                               onChange={handleChange}
                             />
@@ -163,13 +97,14 @@ export const Form = () =>{
                         </div>
 
                         {/* DIRECCION */}
-                        <div className="mb-3">
-                            <label htmlFor="address" className="form-label">Direccion</label>
+                        <div className="mb-3 address">
+                            <label htmlFor="address" className="form-label">Dirección <span className="obligatorio">*</span></label>
                             <input 
                               type="text" 
                               id="address" 
-                              name="address" 
-                              className={`form-control ${errors.address ? 'is-invalid': ''}`}
+                              name="address"
+                              placeholder="Escribe tu dirección" 
+                              className={`form-control input-short ${errors.address ? 'is-invalid': ''}`}
                               value={formData.address}
                               onChange={handleChange}
                             />
@@ -177,25 +112,46 @@ export const Form = () =>{
                         </div>
 
                         {/* MENSAJE ADICIONAL */}
-                        <div className="mb-3">
-                            <label htmlFor="message" className="form-label">Envianos un Comentario</label>
-                            <input 
-                              type="message" 
-                              id="message" 
-                              name="message" 
-                              className={`form-control ${errors.message ? 'is-invalid': ''}`}
-                              value={formData.message}
-                              onChange={handleChange}
+                        <div className="mb-3 message">
+                            <label htmlFor="message" className="form-label">Envíanos un comentario (opcional)</label>
+                            <textarea
+                                id="message"
+                                name="message"
+                                placeholder="Escribe un mensaje"
+                                rows="5"
+                                className={`form-control input-message ${errors.message ? 'is-invalid' : ''}`}
+                                value={formData.message}
+                                onChange={handleChange}
                             />
                             {errors.message && (<div className="invalid-feedback d-block">{errors.message}</div>)}
                         </div>
 
                         {/* BOTON DE ENVIAR */}
-                        <button type="submit" className="btn btn-primary">
+                        <button type="submit" className="btn btn-primary form-button">
                             Enviar
                         </button>
+
+                        
+
                     </form>
+                    {/* FORM*/}
+
+                    <p className="mt-3"><span className="obligatorio">*</span> los campos son obligatorios.</p>
+
                 </div>
+
+                <div className="col-md-5">
+                            <aside className="contact-sidebar">
+                                <h3>Siguenos en nuestras redes</h3>
+                                <p>¿Tenés alguna consulta? También podés encontrarnos en nuestras redes sociales.</p>
+                                {/*Revisar si esta bien lo siguiente*/}
+                                <div className="social-links">
+                                    <a href="https://example.com" target="_blank" rel="noreferrer"> <img src={instagramLogo} alt="" />Instagram</a>
+                                    <a href="https://example.com" target="_blank" rel="noreferrer"><img src={facebookLogo} alt="" />Facebook</a>
+                                    <a href="https://example.com" target="_blank" rel="noreferrer"><img src={twitterXLogo} alt="" />X</a>
+                                </div>
+                            </aside>
+                        </div>
             </div>
     );
 };

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
@@ -27,6 +28,21 @@ function App() {
       <Footer/>
     </>
   );
+=======
+//import { useState } from 'react';
+import { Form } from './components/Form';
+
+function App() {
+  
+  //const [count, setCount] = useState(0);
+
+  return(
+    <div className="container py-4">
+      {/*<h1 className="mb-4">¡Contactate con nosotros!</h1>*/}
+      <Form/>
+    </div>
+  )
+>>>>>>> origin/formulario
 }
 
 export default App;

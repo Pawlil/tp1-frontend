@@ -1,0 +1,91 @@
+/* HEADER */
+
+.eliminate{
+    color:rgb(252, 26, 71);
+}
+
+.contact-eyebrown {
+    margin: 0 0 30px;
+    color: #3157D5;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+}
+
+.contact-heading {
+    margin: 10px 0 30px;
+}
+
+.contact-heading h1 {
+    margin: 7px 0;
+    font-size: clamp(2rem, 4vw, 2.7rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+}
+
+.contact-heading h6 {
+    margin: 0;
+    color: #6b6262;
+}
+
+/* SIDEBAR */
+
+.contact-sidebar {
+    background-color: #f3ebd5;
+    border: 1px solid #000000;
+    border-radius: 12px;
+    padding: 28px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.contact-sidebar h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.contact-sidebar p {
+    color: #6b6262;
+    line-height: 1.6;
+}
+
+/* REDES SOCIALES */
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 24px;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #4e41ff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.social-links img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.social-links a:hover {
+    color: #322aa3;
+}
+
+/* MOBILE */
+
+@media (max-width: 767.98px) {
+    .contact-sidebar {
+        padding: 20px;
+    }
+
+    .social-links a {
+        min-height: 44px;
+    }
+}

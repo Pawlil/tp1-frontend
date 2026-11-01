@@ -5,12 +5,14 @@ import Navbar from 'react-bootstrap/Navbar';
 import { NavLink } from 'react-router-dom';
 import { Cart3 } from 'react-bootstrap-icons';
 import { useCart } from '../context/CartContext';
+import { useTheme } from '../context/useTheme';
 import logoImg from '../assets/logo.jpg';
 import "./navBar.css";
 
 
 function StoreNavbar() {
   const { totalItems } = useCart();
+  const { theme, toggleTheme } = useTheme();
   return (
     <Navbar expand="lg" className="custom-navbar">
       <Container>
@@ -65,6 +67,17 @@ function StoreNavbar() {
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
+        <button
+          type="button"
+          className="theme-switch"
+          role="switch"
+          aria-checked={theme === 'dark'}
+          aria-label={theme === 'dark' ? 'Activar modo claro' : 'Activar modo oscuro'}
+          title={theme === 'dark' ? 'Modo oscuro: activar modo claro' : 'Modo claro: activar modo oscuro'}
+          onClick={toggleTheme}
+        >
+          <span className="theme-switch__thumb" />
+        </button>
       </Container>
     </Navbar>
   );

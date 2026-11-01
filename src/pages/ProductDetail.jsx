@@ -5,11 +5,16 @@ import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { CartPlus, Truck } from "react-bootstrap-icons";
 import { useCart } from "../context/CartContext";
 import "./ProductDetail.css";
+import { Heart, HeartFill } from "react-bootstrap-icons";
+import { useFavorites } from "../context/FavoritesContext";
+
 
 function ProductDetail() {
   const { id } = useParams();
   const book = books.find((b) => b.id === parseInt(id, 10));
   const { addToCart } = useCart();
+  const { toggleFavorito, esFavorito } = useFavorites();
+
 
   const [cantidad, setCantidad] = useState(1);
   const [mensaje, setMensaje] = useState("");
@@ -83,32 +88,35 @@ function ProductDetail() {
           <p>6 cuotas sin interés de ${cuota}</p>
 
           <div className="d-flex align-items-center gap-2 mt-4 flex-wrap">
-            <div className="selector-cantidad d-flex align-items-center">
-              <button
-                type="button"
-                disabled={!hayStock || cantidad <= 1}
-                onClick={() => setCantidad(cantidad - 1)}
-                aria-label="Disminuir cantidad"
-              >
-                -
-              </button>
+            {hayStock && (
+              <div className="selector-cantidad d-flex align-items-center">
+                <button
+                  type="button"
+                  disabled={cantidad <= 1}
+                  onClick={() => setCantidad(cantidad - 1)}
+                  aria-label="Disminuir cantidad"
+                >
+                  -
+                </button>
 
-              <input
-                type="number"
-                value={hayStock ? cantidad : 0}
-                readOnly
-                aria-label="Cantidad de libros"
-              />
+                <input
+                  type="number"
+                  value={cantidad}
+                  readOnly
+                  aria-label="Cantidad de libros"
+                />
 
-              <button
-                type="button"
-                disabled={!hayStock || cantidad >= stock}
-                onClick={() => setCantidad(cantidad + 1)}
-                aria-label="Aumentar cantidad"
-              >
-                +
-              </button>
-            </div>
+                <button
+                  type="button"
+                  disabled={cantidad >= stock}
+                  onClick={() => setCantidad(cantidad + 1)}
+                  aria-label="Aumentar cantidad"
+                >
+                  +
+                </button>
+              </div>
+            )}
+
 
             <Button
               onClick={agregarAlCarrito}
@@ -118,6 +126,16 @@ function ProductDetail() {
               <CartPlus />
               {hayStock ? "AGREGAR AL CARRITO" : "SIN STOCK"}
             </Button>
+
+            <Button
+              variant="outline-secondary"
+              onClick={() => toggleFavorito(book.id)}
+              className="d-inline-flex align-items-center gap-2 px-3 py-2"
+            >
+              {esFavorito(book.id) ? <HeartFill color="#E0245E" /> : <Heart />}
+              {esFavorito(book.id) ? "EN FAVORITOS" : "AGREGAR A FAVORITOS"}
+            </Button>
+
           </div>
 
           {mensaje && (

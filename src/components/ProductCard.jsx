@@ -3,16 +3,31 @@ import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import "./ProductCard.css";
+import { Heart, HeartFill } from "react-bootstrap-icons";
+import { useFavorites } from "../context/FavoritesContext";
+
 
 function ProductoCard({ book }) {
   const disponible = book.stock > 0;
   const { addToCart, cartItems } = useCart();
   const cantidadEnCarrito = cartItems.find((item) => item.id === book.id)?.quantity || 0;
   const sinUnidadesDisponibles = !disponible || cantidadEnCarrito >= book.stock;
+  const { toggleFavorito, esFavorito } = useFavorites();
+  const favorito = esFavorito(book.id);
+
 
   return (
     <Card className="product-card h-100">
       <div className="product-card-image">
+        <button
+          type="button"
+          className={`btn-favorito ${favorito ? "activo" : ""}`}
+          onClick={() => toggleFavorito(book.id)}
+          aria-label={favorito ? "Quitar de favoritos" : "Agregar a favoritos"}
+        >
+          {favorito ? <HeartFill size={20} /> : <Heart size={20} />}
+        </button>
+
         <Card.Img
           variant="top"
           src={book.image}
@@ -39,9 +54,8 @@ function ProductoCard({ book }) {
           </span>
 
           <span
-            className={`product-card-stock ${
-              disponible ? "available" : "unavailable"
-            }`}
+            className={`product-card-stock ${disponible ? "available" : "unavailable"
+              }`}
           >
             {disponible ? "Disponible" : "Sin stock"}
           </span>
@@ -59,6 +73,7 @@ function ProductoCard({ book }) {
             onClick={() => addToCart(book)}
           >
             {sinUnidadesDisponibles ? (disponible ? "Stock completo en carrito" : "Sin stock") : "Agregar al carrito"}
+
           </Button>
         </div>
       </Card.Body>

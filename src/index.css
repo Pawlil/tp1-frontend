@@ -176,3 +176,18 @@ main {
 :root[data-theme="dark"] .cart-remove-mobile {
   color: #B8B8B8;
 }
+
+:root[data-theme="dark"] .cart-coupon label {
+  color: var(--page-text);
+}
+
+:root[data-theme="dark"] .cart-coupon-controls input {
+  background-color: var(--surface-secondary);
+  color: var(--page-text);
+  border-color: var(--surface-border);
+}
+
+:root[data-theme="dark"] .cart-discounted-price,
+:root[data-theme="dark"] .cart-summary-discount-values strong {
+  color: #9BAEFF;
+}

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import { Trash3, Dash, Plus, Bag } from "react-bootstrap-icons";
 import { useCart } from "../context/CartContext";
@@ -13,6 +14,28 @@ const formatoPrecio = (precio) =>
 
 function Cart() {
   const { cartItems, totalItems, totalPrice, updateQuantity, removeFromCart } = useCart();
+  const [couponCode, setCouponCode] = useState("");
+  const [couponApplied, setCouponApplied] = useState(false);
+  const [couponMessage, setCouponMessage] = useState("");
+  const discountRate = 0.15;
+
+  const discountedUnitPrice = (price) =>
+    couponApplied ? Math.round(price * (1 - discountRate)) : price;
+  const discountedTotal = cartItems.reduce(
+    (total, book) => total + discountedUnitPrice(book.price) * book.quantity,
+    0
+  );
+
+  function applyCoupon() {
+    if (couponCode === "DESCUENTO") {
+      setCouponApplied(true);
+      setCouponMessage("¡Cupón aplicado! Tenés un 15% de descuento.");
+      return;
+    }
+
+    setCouponApplied(false);
+    setCouponMessage("El código ingresado no es válido.");
+  }
 
   return (
     <section className="cart-page">
@@ -57,7 +80,15 @@ function Cart() {
                   </div>
                 </div>
 
-                <div className="cart-unit-price" data-label="Precio por unidad">{formatoPrecio(book.price)}</div>
+                <div className="cart-unit-price" data-label="Precio por unidad">
+                  {couponApplied ? (
+                    <div className="cart-discount-prices">
+                      <span className="cart-original-price">{formatoPrecio(book.price)}</span>
+                      <span className="cart-discounted-price">{formatoPrecio(discountedUnitPrice(book.price))}</span>
+                      <span className="cart-discount-badge">15%</span>
+                    </div>
+                  ) : formatoPrecio(book.price)}
+                </div>
 
                 <div className="cart-quantity" aria-label={`Cantidad de ${book.title}`}>
                   <button type="button" aria-label="Quitar una unidad" disabled={book.quantity <= 1} onClick={() => updateQuantity(book.id, book.quantity - 1)}>
@@ -69,7 +100,15 @@ function Cart() {
                   </button>
                 </div>
 
-                <div className="cart-subtotal" data-label="Subtotal">{formatoPrecio(book.price * book.quantity)}</div>
+                <div className="cart-subtotal" data-label="Subtotal">
+                  {couponApplied ? (
+                    <div className="cart-discount-prices cart-discount-prices--subtotal">
+                      <span className="cart-original-price">{formatoPrecio(book.price * book.quantity)}</span>
+                      <span className="cart-discounted-price">{formatoPrecio(discountedUnitPrice(book.price) * book.quantity)}</span>
+                      <span className="cart-discount-badge">15%</span>
+                    </div>
+                  ) : formatoPrecio(book.price * book.quantity)}
+                </div>
                 <button className="cart-remove-desktop" type="button" aria-label={`Quitar ${book.title} del carrito`} title="Quitar del carrito" onClick={() => removeFromCart(book.id)}>
                   <Trash3 size={17} />
                 </button>
@@ -84,9 +123,45 @@ function Cart() {
 
           <aside className="cart-summary">
             <h2>Resumen del pedido</h2>
-            <div className="cart-summary-line"><span>Libros ({totalItems})</span><span>{formatoPrecio(totalPrice)}</span></div>
+            <div className="cart-summary-line">
+              <span>Libros ({totalItems})</span>
+              <span className={couponApplied ? "cart-summary-discount-values" : ""}>
+                {couponApplied && <span className="cart-original-price">{formatoPrecio(totalPrice)}</span>}
+                <strong>{formatoPrecio(discountedTotal)}</strong>
+                {couponApplied && <span className="cart-discount-badge">15%</span>}
+              </span>
+            </div>
             <div className="cart-summary-line"><span>Envío</span><span className="cart-shipping-note">Se calcula al finalizar</span></div>
-            <div className="cart-summary-total"><span>Total estimado</span><strong>{formatoPrecio(totalPrice)}</strong></div>
+            <div className="cart-summary-total">
+              <span>Total estimado</span>
+              <div className="cart-summary-discount-values">
+                {couponApplied && <span className="cart-original-price">{formatoPrecio(totalPrice)}</span>}
+                <strong>{formatoPrecio(discountedTotal)}</strong>
+                {couponApplied && <span className="cart-discount-badge">15%</span>}
+              </div>
+            </div>
+            <div className="cart-coupon">
+              <label htmlFor="cart-coupon-code">Codigo de descuento</label>
+              <div className="cart-coupon-controls">
+                <input
+                  id="cart-coupon-code"
+                  type="text"
+                  value={couponCode}
+                  placeholder="Ingresá tu cupón"
+                  onChange={(event) => {
+                    setCouponCode(event.target.value);
+                    setCouponApplied(false);
+                    setCouponMessage("");
+                  }}
+                />
+                <Button type="button" className="cart-coupon-button" onClick={applyCoupon}>Aplicar</Button>
+              </div>
+              {couponMessage && (
+                <p className={couponApplied ? "cart-coupon-message cart-coupon-success" : "cart-coupon-message cart-coupon-error"} role="status">
+                  {couponMessage}
+                </p>
+              )}
+            </div>
             <p className="cart-summary-note">El total es una estimación de los libros seleccionados. El envío puede modificar el importe final.</p>
             <Button as={Link} to="/contacto" className="cart-primary-button w-100">Continuar con la compra</Button>
             <div className="cart-safe-note">Compra simulada · No se realiza ningún cobro</div>

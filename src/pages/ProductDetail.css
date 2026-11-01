@@ -99,3 +99,24 @@
   color: #FFFFFF !important;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
+.breadcrumb-detalle {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: #6c757d;
+}
+
+.breadcrumb-detalle a {
+  color: #3157D5;
+  text-decoration: none;
+}
+
+.breadcrumb-detalle a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb-detalle .actual {
+  color: #212529;
+  font-weight: 600;
+}

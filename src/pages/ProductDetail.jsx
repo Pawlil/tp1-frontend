@@ -65,9 +65,15 @@ function ProductDetail() {
         </Col>
 
         <Col md={7}>
-          <span className="text-muted text-uppercase mb-2 d-block small">
-            Inicio &gt; Libros &gt; {category}
-          </span>
+          <nav aria-label="breadcrumb" className="breadcrumb-detalle mb-2">
+            <Link to="/">Inicio</Link>
+            <span>/</span>
+            <Link to="/productos">Libros</Link>
+            <span>/</span>
+            <span>{category}</span>
+            <span>/</span>
+            <span className="actual">{title}</span>
+          </nav>
 
           <h1>{title}</h1>
           <h4>{author}</h4>

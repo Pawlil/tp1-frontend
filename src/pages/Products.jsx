@@ -4,6 +4,7 @@ import { useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/Button";
 import "./Products.css";
+import { useFavorites } from "../context/FavoritesContext";
 
 function Products() {
   const [busqueda, setBusqueda] = useState("");
@@ -11,6 +12,9 @@ function Products() {
   const [ordenPrecio, setOrdenPrecio] = useState("");
   const [mostrarCategorias, setMostrarCategorias] = useState(false);
   const [mostrarOrden, setMostrarOrden] = useState(false);
+  const [soloFavoritos, setSoloFavoritos] = useState(false);
+  const { favoritos } = useFavorites();
+
 
   let librosFiltrados = books.filter((book) =>
     book.title.toLowerCase().includes(busqueda.toLowerCase())
@@ -21,6 +25,11 @@ function Products() {
       (book) => book.category === categoria
     );
   }
+
+  if (soloFavoritos) {
+      librosFiltrados = librosFiltrados.filter((book) => favoritos.includes(book.id));
+    }
+
 
   if (ordenPrecio === "menor") {
     librosFiltrados.sort((a, b) => a.price - b.price);
@@ -49,7 +58,7 @@ function Products() {
           value={busqueda}
           onChange={(e) => setBusqueda(e.target.value)}
         />
-        <div className="mt-4 mb-4">
+        <div className="mt-4 mb-4 d-flex gap-2 flex-wrap">
           <Dropdown>
             <Dropdown.Toggle
               id="dropdown-filtros"
@@ -70,9 +79,8 @@ function Products() {
 
                 <button
                   type="button"
-                  className={`selector-categoria ${
-                    mostrarCategorias ? "abierto" : ""
-                  }`}
+                  className={`selector-categoria ${mostrarCategorias ? "abierto" : ""
+                    }`}
                   aria-expanded={mostrarCategorias}
                   onClick={() => {
                     setMostrarCategorias(!mostrarCategorias);
@@ -81,11 +89,10 @@ function Products() {
                 >
                   <span>{categoria || "Todas las categorías"}</span>
                   <i
-                    className={`bi ${
-                      mostrarCategorias
-                        ? "bi-chevron-up"
-                        : "bi-chevron-down"
-                    }`}
+                    className={`bi ${mostrarCategorias
+                      ? "bi-chevron-up"
+                      : "bi-chevron-down"
+                      }`}
                     aria-hidden="true"
                   ></i>
                 </button>
@@ -94,9 +101,8 @@ function Products() {
                   <div className="opciones-categorias">
                     <button
                       type="button"
-                      className={`opcion-categoria ${
-                        categoria === "" ? "seleccionada" : ""
-                      }`}
+                      className={`opcion-categoria ${categoria === "" ? "seleccionada" : ""
+                        }`}
                       onClick={() => {
                         setCategoria("");
                         setMostrarCategorias(false);
@@ -109,9 +115,8 @@ function Products() {
                       <button
                         type="button"
                         key={cat}
-                        className={`opcion-categoria ${
-                          categoria === cat ? "seleccionada" : ""
-                        }`}
+                        className={`opcion-categoria ${categoria === cat ? "seleccionada" : ""
+                          }`}
                         onClick={() => {
                           setCategoria(cat);
                           setMostrarCategorias(false);
@@ -129,9 +134,8 @@ function Products() {
 
                 <button
                   type="button"
-                  className={`selector-categoria ${
-                    mostrarOrden ? "abierto" : ""
-                  }`}
+                  className={`selector-categoria ${mostrarOrden ? "abierto" : ""
+                    }`}
                   aria-expanded={mostrarOrden}
                   onClick={() => {
                     setMostrarOrden(!mostrarOrden);
@@ -142,15 +146,14 @@ function Products() {
                     {ordenPrecio === "menor"
                       ? "Menor a mayor"
                       : ordenPrecio === "mayor"
-                      ? "Mayor a menor"
-                      : "Orden original"}
+                        ? "Mayor a menor"
+                        : "Orden original"}
                   </span>
                   <i
-                    className={`bi ${
-                      mostrarOrden
-                        ? "bi-chevron-up"
-                        : "bi-chevron-down"
-                    }`}
+                    className={`bi ${mostrarOrden
+                      ? "bi-chevron-up"
+                      : "bi-chevron-down"
+                      }`}
                     aria-hidden="true"
                   ></i>
                 </button>
@@ -165,11 +168,10 @@ function Products() {
                       <button
                         type="button"
                         key={opcion.valor || "original"}
-                        className={`opcion-categoria ${
-                          ordenPrecio === opcion.valor
-                            ? "seleccionada"
-                            : ""
-                        }`}
+                        className={`opcion-categoria ${ordenPrecio === opcion.valor
+                          ? "seleccionada"
+                          : ""
+                          }`}
                         onClick={() => {
                           setOrdenPrecio(opcion.valor);
                           setMostrarOrden(false);
@@ -191,8 +193,23 @@ function Products() {
               </Button>
             </Dropdown.Menu>
           </Dropdown>
+          <Button
+            variant={soloFavoritos ? "primary" : "outline-primary"}
+            onClick={() => setSoloFavoritos(!soloFavoritos)}
+          >
+            {soloFavoritos ? "Ver todos" : `Mis favoritos (${favoritos.length})`}
+          </Button>
+
         </div>
       </div>
+
+      {librosFiltrados.length === 0 && (
+        <p className="text-center text-muted">
+          {soloFavoritos ? "Todavía no marcaste ningún favorito." : "No se encontraron libros."}
+        </p>
+      )}
+
+
 
       <section className="catalogo">
         {librosFiltrados.map((book) => (

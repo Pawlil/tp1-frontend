@@ -55,11 +55,13 @@ function ProductDetail() {
 
       <Row className="g-4 align-items-start">
         <Col md={5} className="text-center">
-          <img
-            src={image}
-            alt={`Tapa del libro ${title}`}
-            className="img-fluid sombra-libro"
-          />
+          <div className="detalle-imagen">
+            <img
+              src={image}
+              alt={`Tapa del libro ${title}`}
+              className="sombra-libro"
+            />
+          </div>
         </Col>
 
         <Col md={7}>

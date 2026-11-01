@@ -85,3 +85,66 @@
   color: #FFFFFF !important;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
+
+.product-detail-prices {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  margin: 16px 0;
+}
+
+.product-detail-offer {
+  display: inline-block;
+  background-color: #FFF0E5;
+  color: #C45B20;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.product-detail-old-price {
+  color: #21335e;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: line-through;
+}
+
+.product-detail-price {
+  color: #3157D5;
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.btn-azul.agregado {
+  background-color: #198754 !important;
+  border-color: #198754 !important;
+  color: #FFFFFF !important;
+  animation: confirmar-agregado 0.3s ease;
+}
+
+@keyframes confirmar-agregado {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.06);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.btn-azul.agregado,
+.btn-azul.agregado:hover,
+.btn-azul.agregado:focus,
+.btn-azul.agregado:active {
+  background-color: #198754 !important;
+  border-color: #198754 !important;
+  color: #FFFFFF !important;
+}

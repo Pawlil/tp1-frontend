@@ -9,6 +9,12 @@ import "./ProductDetail.css";
 function ProductDetail() {
   const { id } = useParams();
   const book = books.find((b) => b.id === parseInt(id, 10));
+  const tieneOferta = [1, 3].includes(book?.id);
+  const [agregado, setAgregado] = useState(false);
+
+const precioAnterior = tieneOferta
+  ? book.price * 1.2
+  : null;
   const { addToCart } = useCart();
 
   const [cantidad, setCantidad] = useState(1);
@@ -35,12 +41,13 @@ function ProductDetail() {
   const cuota = (price / 6).toFixed(2);
   const hayStock = stock > 0;
 
-  const agregarAlCarrito = () => {
-    if (!hayStock) return;
-    addToCart(book)
-    setTipoMensaje("success");
-    setMensaje(`Se agregó "${title}" al carrito.`);
-  };
+  function agregarAlCarrito() {
+  const resultado = addToCart(book); 
+  if (resultado) {
+    setAgregado(true);
+    setTimeout(() => setAgregado(false), 1500);
+  }
+}
 
   return (
     <Container className="detalle-producto py-5">
@@ -70,7 +77,23 @@ function ProductDetail() {
           <h1>{title}</h1>
           <h4>{author}</h4>
 
-          <h2 className="mt-3">${price.toLocaleString("es-AR")}</h2>
+          <div className="product-detail-prices">
+  {tieneOferta && (
+    <span className="product-detail-offer">
+      OFERTA
+    </span>
+  )}
+
+  {tieneOferta && (
+    <span className="product-detail-old-price">
+      ${precioAnterior}
+    </span>
+  )}
+
+  <h2 className="product-detail-price">
+    ${price}
+  </h2>
+</div>
 
           <p>6 cuotas sin interés de ${cuota}</p>
 
@@ -103,13 +126,21 @@ function ProductDetail() {
             </div>
 
             <Button
-              onClick={agregarAlCarrito}
-              disabled={!hayStock}
-              className="btn-azul d-inline-flex align-items-center gap-2 px-3 py-2"
-            >
-              <CartPlus />
-              {hayStock ? "AGREGAR AL CARRITO" : "SIN STOCK"}
-            </Button>
+  onClick={agregarAlCarrito}
+  disabled={!hayStock}
+  className={`btn-azul d-inline-flex align-items-center gap-2 px-3 py-2 ${
+    agregado ? "agregado" : ""
+  }`}
+>
+  {agregado ? (
+    <>✓ AGREGADO</>
+  ) : (
+    <>
+      <CartPlus />
+      {hayStock ? "AGREGAR AL CARRITO" : "SIN STOCK"}
+    </>
+  )}
+</Button>
           </div>
 
           {mensaje && (

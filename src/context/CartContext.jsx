@@ -20,21 +20,30 @@ export function CartProvider({ children }) {
   }, [cartItems]);
 
   function addToCart(book) {
-    if (!book || book.stock <= 0) return;
+  if (!book || book.stock <= 0) return false;
 
-    setCartItems((actuales) => {
-      const existente = actuales.find((item) => item.id === book.id);
+  const existente = cartItems.find((item) => item.id === book.id);
 
-      if (existente) {
-        if (existente.quantity >= book.stock) return actuales;
-        return actuales.map((item) =>
-          item.id === book.id ? { ...item, quantity: item.quantity + 1 } : item
-        );
-      }
-
-      return [...actuales, { ...book, quantity: 1 }];
-    });
+  if (existente && existente.quantity >= book.stock) {
+    return false;
   }
+
+  setCartItems((actuales) => {
+    const itemExistente = actuales.find((item) => item.id === book.id);
+
+    if (itemExistente) {
+      return actuales.map((item) =>
+        item.id === book.id
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      );
+    }
+
+    return [...actuales, { ...book, quantity: 1 }];
+  });
+
+  return true;
+}
 
   function updateQuantity(bookId, quantity) {
     setCartItems((actuales) => actuales.map((item) => {

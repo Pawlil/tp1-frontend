@@ -11,6 +11,21 @@ function Products() {
   const [ordenPrecio, setOrdenPrecio] = useState("");
   const [mostrarCategorias, setMostrarCategorias] = useState(false);
   const [mostrarOrden, setMostrarOrden] = useState(false);
+  const [tipoLibro, setTipoLibro] = useState("");
+
+  function obtenerEtiquetas(book) {
+  const etiquetas = [];
+
+  if ([3, 4, 5].includes(book.id)) {
+    etiquetas.push("Nuevo");
+  }
+
+  if ([6, 9, 10, 12].includes(book.id)) {
+    etiquetas.push("Más vendido");
+  }
+
+  return etiquetas;
+}
 
   let librosFiltrados = books.filter((book) =>
     book.title.toLowerCase().includes(busqueda.toLowerCase())
@@ -28,16 +43,23 @@ function Products() {
     librosFiltrados.sort((a, b) => b.price - a.price);
   }
 
+  if (tipoLibro) {
+  librosFiltrados = librosFiltrados.filter((book) =>
+    obtenerEtiquetas(book).includes(tipoLibro)
+  );
+}
+
   const categorias = [...new Set(books.map((book) => book.category))];
 
   function limpiarFiltros() {
     setCategoria("");
     setOrdenPrecio("");
+    setTipoLibro("")
     setMostrarCategorias(false);
     setMostrarOrden(false);
   }
 
-  return (
+   return (
     <main>
       <h1 className="titulo text-center">Nuestro catálogo</h1>
 
@@ -49,6 +71,7 @@ function Products() {
           value={busqueda}
           onChange={(e) => setBusqueda(e.target.value)}
         />
+
         <div className="mt-4 mb-4">
           <Dropdown>
             <Dropdown.Toggle
@@ -65,6 +88,7 @@ function Products() {
               className="menu-filtros p-3"
               style={{ minWidth: "260px" }}
             >
+              {/* Filtro por categoría */}
               <div className="mb-3">
                 <label className="form-label">Categoría</label>
 
@@ -123,7 +147,28 @@ function Products() {
                   </div>
                 )}
               </div>
+              <div className="mb-3">
+                <label className="form-label">Tipo de libro</label>
 
+                <div className="opciones-categorias">
+                  {[
+                    { valor: "", texto: "Todos los libros" },
+                    { valor: "Nuevo", texto: "Nuevos" },
+                    { valor: "Más vendido", texto: "Más vendidos" },
+                  ].map((opcion) => (
+                    <button
+                      type="button"
+                      key={opcion.valor || "todos"}
+                      className={`opcion-categoria ${
+                        tipoLibro === opcion.valor ? "seleccionada" : ""
+                      }`}
+                      onClick={() => setTipoLibro(opcion.valor)}
+                    >
+                      {opcion.texto}
+                    </button>
+                  ))}
+                </div>
+              </div>
               <div className="mb-3">
                 <label className="form-label">Ordenar por precio</label>
 
@@ -182,6 +227,7 @@ function Products() {
                 )}
               </div>
 
+              {/* Limpiar filtros */}
               <Button
                 variant="outline-secondary"
                 className="boton-limpiar-filtros w-100"
@@ -193,14 +239,18 @@ function Products() {
           </Dropdown>
         </div>
       </div>
-
       <section className="catalogo">
-        {librosFiltrados.map((book) => (
-          <ProductCard key={book.id} book={book} />
-        ))}
+        {librosFiltrados.length > 0 ? (
+          librosFiltrados.map((book) => (
+            <ProductCard key={book.id} book={book} />
+          ))
+        ) : (
+          <p className="text-center w-100 py-4">
+            No se encontraron libros con esos filtros.
+          </p>
+        )}
       </section>
     </main>
   );
 }
-
 export default Products;

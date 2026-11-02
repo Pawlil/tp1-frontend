@@ -6,57 +6,102 @@ import twitterXLogo from "../assets/twitterXLogo.png";
 
 const Contact = () => {
   return (
-    <div className="row g-4">
+    <div className="contact-page row g-4">
 
-      {/* HEAD */}
+      {/* HEADER Y FORMULARIO */}
       <div className="col-md-7">
+
         <p className="contact-eyebrown">BIBLIO-TEC / CONTACTO</p>
 
         <div className="contact-heading">
-          <h1 className="mb-4">¡Contáctate con nosotros!</h1>
-          <h6>
-            Completa el siguiente formulario para que podamos comunicarnos contigo. Nuestro equipo de 
-            atención al cliente esta disponible para ayudarte a tener una mejor experiencia ya sea con tus pedidos o problemas del mismo.           
-            Además, las respuestas son personalizadas, por lo que en un plazo de 24 horas (en nuestro horario comercial)
-            nos pondremos en contacto. Nuestro horario comercial es de lunes a viernes de 9:00 a 17:00 GTM-3.
-          </h6>
-      </div>
+          <h1>¡Contáctate con nosotros!</h1>
 
-      {/* FORM */}
-      <Form />
+          <p className="contact-intro">
+            Completa el siguiente formulario para que podamos comunicarnos
+            contigo. Nuestro equipo de atención al cliente está disponible
+            para ayudarte a tener una mejor experiencia en las próximas
+            24 horas.
+
+            <span className="contact-schedule">
+              Nuestro horario comercial es de lunes a viernes de 9:00 a
+              17:00 GMT-3.
+            </span>
+          </p>
+        </div>
+
+        {/* FORMULARIO */}
+        <Form />
+
       </div>
 
       {/* SIDEBAR */}
       <div className="col-md-5">
-        <aside className="contact-sidebar">
-          <h3>Siguenos en nuestras redes</h3>
 
-          <p>
+        <aside className="contact-sidebar">
+
+          <span className="contact-sidebar-label">
+            ESTAMOS PARA AYUDARTE
+          </span>
+
+          <h3>Seguinos en nuestras redes</h3>
+
+          <p className="contact-sidebar-description">
             ¿Tenés alguna consulta? También podés encontrarnos
-            en nuestras redes sociales.
+            en nuestras redes sociales. ¡Nos encanta estar en contacto
+            con nuestra comunidad!
           </p>
 
           <div className="social-links">
-            <a href="https://example.com" target="_blank" rel="noreferrer">
-              <img src={instagramLogo} alt="Instagram" /> Instagram
+
+            <a
+              href="https://example.com"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Instagram de Biblio-Tec"
+            >
+              <img src={instagramLogo} alt="" />
+              <span>Instagram</span>
+              <span className="social-arrow">↗</span>
             </a>
 
-            <a href="https://example.com" target="_blank" rel="noreferrer">
-              <img src={facebookLogo} alt="Facebook" /> Facebook
+            <a
+              href="https://example.com"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Facebook de Biblio-Tec"
+            >
+              <img src={facebookLogo} alt="" />
+              <span>Facebook</span>
+              <span className="social-arrow">↗</span>
             </a>
 
-            <a href="https://example.com" target="_blank" rel="noreferrer">
-              <img src={twitterXLogo} alt="X" /> X
+            <a
+              href="https://example.com"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="X de Biblio-Tec"
+            >
+              <img src={twitterXLogo} alt="" />
+              <span>X</span>
+              <span className="social-arrow">↗</span>
             </a>
+
           </div>
-          
+
+          <div className="contact-sidebar-note">
+            <p>
+              Consultanos para mejorar
+              tu experiencia de lectura.
+            </p>
+            <strong>Equipo Biblio-Tec</strong>
+          </div>
+
         </aside>
-        <p className="eliminate">Decidir si borrar esto/Cambiarlo por otra cosa.</p>
+
       </div>
 
     </div>
   );
 };
-
 
 export default Contact;

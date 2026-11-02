@@ -12,9 +12,9 @@ function ProductDetail() {
   const tieneOferta = [1, 3].includes(book?.id);
   const [agregado, setAgregado] = useState(false);
 
-const precioAnterior = tieneOferta
-  ? book.price * 1.2
-  : null;
+  const precioAnterior = tieneOferta
+    ? book.price * 1.2
+    : null;
   const { addToCart } = useCart();
 
   const [cantidad, setCantidad] = useState(1);
@@ -42,12 +42,12 @@ const precioAnterior = tieneOferta
   const hayStock = stock > 0;
 
   function agregarAlCarrito() {
-  const resultado = addToCart(book); 
-  if (resultado) {
-    setAgregado(true);
-    setTimeout(() => setAgregado(false), 1500);
+    const resultado = addToCart(book);
+    if (resultado) {
+      setAgregado(true);
+      setTimeout(() => setAgregado(false), 1500);
+    }
   }
-}
 
   return (
     <Container className="detalle-producto py-5">
@@ -78,22 +78,22 @@ const precioAnterior = tieneOferta
           <h4>{author}</h4>
 
           <div className="product-detail-prices">
-  {tieneOferta && (
-    <span className="product-detail-offer">
-      OFERTA
-    </span>
-  )}
+            {tieneOferta && (
+              <span className="product-detail-offer">
+                OFERTA
+              </span>
+            )}
 
-  {tieneOferta && (
-    <span className="product-detail-old-price">
-      ${precioAnterior}
-    </span>
-  )}
+            {tieneOferta && (
+              <span className="product-detail-old-price">
+                ${precioAnterior}
+              </span>
+            )}
 
-  <h2 className="product-detail-price">
-    ${price}
-  </h2>
-</div>
+            <h2 className="product-detail-price">
+              ${price}
+            </h2>
+          </div>
 
           <p>6 cuotas sin interés de ${cuota}</p>
 
@@ -126,22 +126,37 @@ const precioAnterior = tieneOferta
             </div>
 
             <Button
-  onClick={agregarAlCarrito}
-  disabled={!hayStock}
-  className={`btn-azul d-inline-flex align-items-center gap-2 px-3 py-2 ${
-    agregado ? "agregado" : ""
-  }`}
->
-  {agregado ? (
-    <>✓ AGREGADO</>
-  ) : (
-    <>
-      <CartPlus />
-      {hayStock ? "AGREGAR AL CARRITO" : "SIN STOCK"}
-    </>
-  )}
-</Button>
+              onClick={agregarAlCarrito}
+              disabled={!hayStock}
+              className={`btn-azul d-inline-flex align-items-center gap-2 px-3 py-2 ${agregado ? "agregado" : ""
+                }`}
+            >
+              {agregado ? (
+                <>✓ AGREGADO</>
+              ) : (
+                <>
+                  <CartPlus />
+                  {hayStock ? "AGREGAR AL CARRITO" : "SIN STOCK"}
+                </>
+              )}
+            </Button>
+
           </div>
+
+          {/* BOTON COMPRAR */}
+
+          <div className="mt-3">
+            <Button
+              as={Link}
+              to="/compra"
+              disabled={!hayStock}
+              className="btn-comprar"
+            >
+              COMPRAR
+            </Button>
+          </div>
+
+          {/* BOTON COMPRAR */}
 
           {mensaje && (
             <div

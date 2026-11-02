@@ -18,9 +18,16 @@ export const Form = () => {
 
     const handleChange = (event) => {
 
+        const { name, value } = event.target;
+
         setFormData({
             ...formData,
-            [event.target.name]: event.target.value,
+            [name]: value,
+        });
+
+        setErrors({
+            ...errors,
+            [name]: "",
         });
 
         setSubmitted(false);
@@ -44,12 +51,14 @@ export const Form = () => {
     return (
         <div className="form-container">
 
-            {/* FORM*/}
             <form onSubmit={handleSubmit} noValidate>
 
                 {/* NOMBRE */}
-                <div className="mb-3 name">
-                    <label htmlFor="name" className="form-label">Nombre y Apellido <span className="obligatorio">*</span></label>
+                <div className="mb-4 name">
+                    <label htmlFor="name" className="form-label">
+                        Nombre y Apellido <span className="obligatorio">*</span>
+                    </label>
+
                     <input
                         type="text"
                         id="name"
@@ -58,13 +67,22 @@ export const Form = () => {
                         className={`form-control input-short ${errors.name ? 'is-invalid' : ''}`}
                         value={formData.name}
                         onChange={handleChange}
+                        aria-invalid={!!errors.name}
                     />
-                    {errors.name && (<div className="invalid-feedback d-block">{errors.name}</div>)}
+
+                    {errors.name && (
+                        <div className="invalid-feedback d-block">
+                            {errors.name}
+                        </div>
+                    )}
                 </div>
 
                 {/* EMAIL */}
-                <div className="mb-3 email">
-                    <label htmlFor="email" className="form-label">Email <span className="obligatorio">*</span></label>
+                <div className="mb-4 email">
+                    <label htmlFor="email" className="form-label">
+                        Email <span className="obligatorio">*</span>
+                    </label>
+
                     <input
                         type="email"
                         id="email"
@@ -73,13 +91,22 @@ export const Form = () => {
                         className={`form-control input-short ${errors.email ? 'is-invalid' : ''}`}
                         value={formData.email}
                         onChange={handleChange}
+                        aria-invalid={!!errors.email}
                     />
-                    {errors.email && (<div className="invalid-feedback d-block">{errors.email}</div>)}
+
+                    {errors.email && (
+                        <div className="invalid-feedback d-block">
+                            {errors.email}
+                        </div>
+                    )}
                 </div>
 
                 {/* TELEFONO */}
-                <div className="mb-3 phone">
-                    <label htmlFor="phone" className="form-label">Numero de teléfono <span className="obligatorio">*</span></label>
+                <div className="mb-4 phone">
+                    <label htmlFor="phone" className="form-label">
+                        Número de teléfono <span className="obligatorio">*</span>
+                    </label>
+
                     <input
                         type="text"
                         id="phone"
@@ -88,13 +115,22 @@ export const Form = () => {
                         className={`form-control input-short ${errors.phone ? 'is-invalid' : ''}`}
                         value={formData.phone}
                         onChange={handleChange}
+                        aria-invalid={!!errors.phone}
                     />
-                    {errors.phone && (<div className="invalid-feedback d-block">{errors.phone}</div>)}
+
+                    {errors.phone && (
+                        <div className="invalid-feedback d-block">
+                            {errors.phone}
+                        </div>
+                    )}
                 </div>
 
                 {/* DIRECCION */}
-                <div className="mb-3 address">
-                    <label htmlFor="address" className="form-label">Dirección <span className="obligatorio">*</span></label>
+                <div className="mb-4 address">
+                    <label htmlFor="address" className="form-label">
+                        Dirección <span className="obligatorio">*</span>
+                    </label>
+
                     <input
                         type="text"
                         id="address"
@@ -103,13 +139,22 @@ export const Form = () => {
                         className={`form-control input-short ${errors.address ? 'is-invalid' : ''}`}
                         value={formData.address}
                         onChange={handleChange}
+                        aria-invalid={!!errors.address}
                     />
-                    {errors.address && (<div className="invalid-feedback d-block">{errors.address}</div>)}
+
+                    {errors.address && (
+                        <div className="invalid-feedback d-block">
+                            {errors.address}
+                        </div>
+                    )}
                 </div>
 
                 {/* MENSAJE ADICIONAL */}
-                <div className="mb-3 message">
-                    <label htmlFor="message" className="form-label">Envíanos un comentario (opcional)</label>
+                <div className="mb-4 message">
+                    <label htmlFor="message" className="form-label">
+                        Envíanos un comentario (opcional)
+                    </label>
+
                     <textarea
                         id="message"
                         name="message"
@@ -118,18 +163,54 @@ export const Form = () => {
                         className={`form-control input-message ${errors.message ? 'is-invalid' : ''}`}
                         value={formData.message}
                         onChange={handleChange}
+                        aria-invalid={!!errors.message}
                     />
-                    {errors.message && (<div className="invalid-feedback d-block">{errors.message}</div>)}
+
+                    {errors.message && (
+                        <div className="invalid-feedback d-block">
+                            {errors.message}
+                        </div>
+                    )}
+                </div>
+
+                {/* PRIVACIDAD */}
+                <div className="privacy-note">
+                    <p>
+                        Al enviar este formulario, acepto los Términos de uso
+                        de Biblio-Tec, y he leído y reconozco la Política de
+                        privacidad de Biblio-Tec.
+                    </p>
+
+                    <p>
+                        Biblio-Tec también usará tus datos personales,
+                        incluyendo tus comentarios en este formulario,
+                        para personalizar tu experiencia, mejorar los
+                        análisis de los servicios, productos y otras funciones.
+                    </p>
                 </div>
 
                 {/* BOTON DE ENVIAR */}
-                <button type="submit" className="btn btn-primary form-button">Enviar</button>
+                <button
+                    type="submit"
+                    className="btn btn-primary form-button"
+                >
+                    Enviar formulario
+                </button>
 
             </form>
 
-            {submitted && (<div className="success-message" role="status">¡Tu Formulario fue enviado correctamente!</div>)}
+            {/* MENSAJE DE EXITO */}
+            {submitted && (
+                <div className="success-message" role="status">
+                    ¡Tu formulario fue enviado correctamente!
+                </div>
+            )}
 
-            <p className="mt-3"><span className="obligatorio">*</span> los campos son obligatorios.</p>
+            {/* CAMPOS OBLIGATORIOS */}
+            <p className="required-note">
+                <span className="obligatorio">*</span>
+                Los campos obligatorios deben completarse.
+            </p>
 
         </div>
     );

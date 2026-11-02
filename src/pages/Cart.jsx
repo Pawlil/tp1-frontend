@@ -163,7 +163,7 @@ function Cart() {
               )}
             </div>
             <p className="cart-summary-note">El total es una estimación de los libros seleccionados. El envío puede modificar el importe final.</p>
-            <Button as={Link} to="/contacto" className="cart-primary-button w-100">Continuar con la compra</Button>
+            <Button as={Link} to="/compra" className="cart-primary-button w-100">Continuar con la compra</Button>
             <div className="cart-safe-note">Compra simulada · No se realiza ningún cobro</div>
           </aside>
         </div>

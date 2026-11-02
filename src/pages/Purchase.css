@@ -1,0 +1,142 @@
+/* HEADER */
+
+.purchase-page {
+    padding-bottom: 35px;
+}
+
+.purchase-header {
+    margin-bottom: 30px;
+}
+
+.purchase-eyebrown {
+    margin: 0 0 20px;
+    color: #3157D5;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+}
+
+.purchase-header h1 {
+    margin: 7px 0 15px;
+    font-size: clamp(2rem, 4vw, 2.7rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+}
+
+.purchase-header p:last-child {
+    color: #6b6262;
+    line-height: 1.6;
+    max-width: 650px;
+}
+
+/* SIDEBAR */
+
+.purchase-sidebar {
+    background-color: #f3ebd5;
+    border: 1px solid #000000;
+    border-radius: 12px;
+    padding: 28px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.purchase-sidebar h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.purchase-sidebar > p {
+    color: #6b6262;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+/* PASOS */
+
+.purchase-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+.purchase-info-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #3157D5;
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.purchase-info-item h6 {
+    font-weight: 700;
+    margin: 0 0 5px;
+}
+
+.purchase-info-item p {
+    color: #6b6262;
+    font-size: 0.9rem;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* NOTA */
+
+.purchase-sidebar-note {
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    padding-top: 20px;
+    margin-top: 10px;
+}
+
+.purchase-sidebar-note strong {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.purchase-sidebar-note p {
+    color: #6b6262;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* MODO OSCURO */
+
+:root[data-theme="dark"] .purchase-header h1,
+:root[data-theme="dark"] .purchase-sidebar h3,
+:root[data-theme="dark"] .purchase-info-item h6,
+:root[data-theme="dark"] .purchase-sidebar-note strong {
+    color: var(--page-text);
+}
+
+:root[data-theme="dark"] .purchase-header p:last-child,
+:root[data-theme="dark"] .purchase-sidebar > p,
+:root[data-theme="dark"] .purchase-info-item p,
+:root[data-theme="dark"] .purchase-sidebar-note p {
+    color: var(--muted-text);
+}
+
+:root[data-theme="dark"] .purchase-sidebar {
+    background-color: var(--surface-secondary);
+    border-color: var(--surface-border);
+}
+
+:root[data-theme="dark"] .purchase-sidebar-note {
+    border-top-color: var(--surface-border);
+}
+
+/* MOBILE */
+
+@media (max-width: 767.98px) {
+    .purchase-header {
+        margin-bottom: 22px;
+    }
+
+    .purchase-sidebar {
+        padding: 20px;
+    }
+}

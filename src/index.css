@@ -191,3 +191,61 @@ main {
 :root[data-theme="dark"] .cart-summary-discount-values strong {
   color: #9BAEFF;
 }
+
+/* PURCHASE FORM DARK */
+
+:root[data-theme="dark"] .purchase-form-container {
+    background-color: var(--surface-background);
+    color: var(--page-text);
+    border-color: var(--surface-border);
+}
+
+:root[data-theme="dark"] .purchase-section {
+    background-color: var(--surface-background);
+    color: var(--page-text);
+    border-color: var(--surface-border);
+}
+
+:root[data-theme="dark"] .purchase-section h3,
+:root[data-theme="dark"] .purchase-section p,
+:root[data-theme="dark"] .purchase-section .form-label {
+    color: var(--page-text);
+}
+
+:root[data-theme="dark"] .purchase-section-heading p {
+    color: var(--muted-text);
+}
+
+:root[data-theme="dark"] .purchase-form-container .form-control,
+:root[data-theme="dark"] .purchase-form-container .form-select {
+    background-color: var(--surface-secondary);
+    color: var(--page-text);
+    border-color: var(--surface-border);
+}
+
+:root[data-theme="dark"] .purchase-form-container .form-control::placeholder {
+    color: var(--muted-text);
+    opacity: 1;
+}
+
+:root[data-theme="dark"] .purchase-option {
+    background-color: var(--surface-secondary);
+    color: var(--page-text);
+    border-color: var(--surface-border);
+}
+
+:root[data-theme="dark"] .purchase-option strong,
+:root[data-theme="dark"] .purchase-option p {
+    color: var(--page-text);
+}
+
+:root[data-theme="dark"] .purchase-success {
+    background-color: #183d29;
+    color: #b9edc9;
+    border-color: #286b43;
+}
+
+:root[data-theme="dark"] .purchase-success p {
+    color: #b9edc9;
+}
+

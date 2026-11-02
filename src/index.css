@@ -72,6 +72,8 @@ main {
 
 :root[data-theme="dark"] .home-main-sections,
 :root[data-theme="dark"] #info-section,
+:root[data-theme="dark"] .purchase-form-container,
+:root[data-theme="dark"] .purchase-sidebar,
 :root[data-theme="dark"] #recs-section,
 :root[data-theme="dark"] #recs-section .card,
 :root[data-theme="dark"] .info,

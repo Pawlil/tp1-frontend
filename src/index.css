@@ -74,6 +74,8 @@ main {
 :root[data-theme="dark"] #info-section,
 :root[data-theme="dark"] #recs-section,
 :root[data-theme="dark"] #recs-section .card,
+:root[data-theme="dark"] #about-main-card,
+:root[data-theme="dark"] .about-card,
 :root[data-theme="dark"] .info,
 :root[data-theme="dark"] .novedades,
 :root[data-theme="dark"] .product-card,

@@ -2,11 +2,25 @@
   background-color: var(--color-bg);
 }
 
+.detalle-imagen {
+  width: 100%;
+  max-width: 340px;
+  aspect-ratio: 2 / 3;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #F3F3EE;
+  padding: 16px;
+  border-radius: 8px;
+}
+
 .sombra-libro {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   border-radius: 4px;
-  max-height: 500px;
-  object-fit: cover;
 }
 
 .btn-azul {
@@ -175,4 +189,25 @@
   background-color: #198754 !important;
   border-color: #198754 !important;
   color: #FFFFFF !important;
+}
+.breadcrumb-detalle {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: #6c757d;
+}
+
+.breadcrumb-detalle a {
+  color: #3157D5;
+  text-decoration: none;
+}
+
+.breadcrumb-detalle a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb-detalle .actual {
+  color: #212529;
+  font-weight: 600;
 }

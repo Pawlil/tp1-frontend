@@ -5,6 +5,9 @@ import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { CartPlus, Truck } from "react-bootstrap-icons";
 import { useCart } from "../context/CartContext";
 import "./ProductDetail.css";
+import { Heart, HeartFill } from "react-bootstrap-icons";
+import { useFavorites } from "../context/FavoritesContext";
+
 
 function ProductDetail() {
   const { id } = useParams();
@@ -16,6 +19,8 @@ function ProductDetail() {
     ? book.price * 1.2
     : null;
   const { addToCart } = useCart();
+  const { toggleFavorito, esFavorito } = useFavorites();
+
 
   const [cantidad, setCantidad] = useState(1);
   const [mensaje, setMensaje] = useState("");
@@ -62,17 +67,25 @@ function ProductDetail() {
 
       <Row className="g-4 align-items-start">
         <Col md={5} className="text-center">
-          <img
-            src={image}
-            alt={`Tapa del libro ${title}`}
-            className="img-fluid sombra-libro"
-          />
+          <div className="detalle-imagen">
+            <img
+              src={image}
+              alt={`Tapa del libro ${title}`}
+              className="sombra-libro"
+            />
+          </div>
         </Col>
 
         <Col md={7}>
-          <span className="text-muted text-uppercase mb-2 d-block small">
-            Inicio &gt; Libros &gt; {category}
-          </span>
+          <nav aria-label="breadcrumb" className="breadcrumb-detalle mb-2">
+            <Link to="/">Inicio</Link>
+            <span>/</span>
+            <Link to="/productos">Libros</Link>
+            <span>/</span>
+            <span>{category}</span>
+            <span>/</span>
+            <span className="actual">{title}</span>
+          </nav>
 
           <h1>{title}</h1>
           <h4>{author}</h4>
@@ -98,32 +111,35 @@ function ProductDetail() {
           <p>6 cuotas sin interés de ${cuota}</p>
 
           <div className="d-flex align-items-center gap-2 mt-4 flex-wrap">
-            <div className="selector-cantidad d-flex align-items-center">
-              <button
-                type="button"
-                disabled={!hayStock || cantidad <= 1}
-                onClick={() => setCantidad(cantidad - 1)}
-                aria-label="Disminuir cantidad"
-              >
-                -
-              </button>
+            {hayStock && (
+              <div className="selector-cantidad d-flex align-items-center">
+                <button
+                  type="button"
+                  disabled={cantidad <= 1}
+                  onClick={() => setCantidad(cantidad - 1)}
+                  aria-label="Disminuir cantidad"
+                >
+                  -
+                </button>
 
-              <input
-                type="number"
-                value={hayStock ? cantidad : 0}
-                readOnly
-                aria-label="Cantidad de libros"
-              />
+                <input
+                  type="number"
+                  value={cantidad}
+                  readOnly
+                  aria-label="Cantidad de libros"
+                />
 
-              <button
-                type="button"
-                disabled={!hayStock || cantidad >= stock}
-                onClick={() => setCantidad(cantidad + 1)}
-                aria-label="Aumentar cantidad"
-              >
-                +
-              </button>
-            </div>
+                <button
+                  type="button"
+                  disabled={cantidad >= stock}
+                  onClick={() => setCantidad(cantidad + 1)}
+                  aria-label="Aumentar cantidad"
+                >
+                  +
+                </button>
+              </div>
+            )}
+
 
             <Button
               onClick={agregarAlCarrito}
@@ -154,6 +170,16 @@ function ProductDetail() {
             >
               COMPRAR
             </Button>
+
+            <Button
+              variant="outline-secondary"
+              onClick={() => toggleFavorito(book.id)}
+              className="d-inline-flex align-items-center gap-2 px-3 py-2"
+            >
+              {esFavorito(book.id) ? <HeartFill color="#E0245E" /> : <Heart />}
+              {esFavorito(book.id) ? "EN FAVORITOS" : "AGREGAR A FAVORITOS"}
+            </Button>
+
           </div>
 
           {/* BOTON COMPRAR */}

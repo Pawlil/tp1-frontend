@@ -1,16 +1,39 @@
-# React + Vite
+# Biblio-Tec
+**Trabajo Práctico N°1 de Construcción de Interfaces de Usuario.**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación web desarrollada con React orientada a la venta de libros. Cuenta con una interfaz responsiva, una página de inicio y banner que representa al comercio, accesos directos en la barra superior de navegación, sección de novedades y de Nosotros, un catálogo con filtros, detalles de cada producto, un formulario y un carrito que simulan la compra.
 
-Currently, two official plugins are available:
+## Integrantes del grupo:
+* Ana Paula Godoy
+* Martin Staccia
+* Naara Ponce
+* Alan Valdez
+* Juan Ignacio Schmidt
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tecnologías Utilizadas
 
-## React Compiler
+* **React** 
+* **React-Bootstrap**  
+* **React Bootstrap Icons**
+* **React Router Dom** 
+* **CSS** 
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Expanding the ESLint configuration
+## Instrucciones para instalar y correr el proyecto
 
-## If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Pasos para clonar y ejecutar la aplicación:
+
+1. **Clonar el repositorio:**
+    ```bash
+    git clone <URL_DEL_REPOSITORIO>
+2. **Dirigirse a la carpeta del repositorio**
+    ```
+    cd tp1-frontend
+3. **Escribi en consola:**
+    ```
+    npm i
+    npm run dev
+4. **Abrir el link de localhost proporcionado en la consola.**
+
+## Link al deploy:
+agregar link si lo hacemos...

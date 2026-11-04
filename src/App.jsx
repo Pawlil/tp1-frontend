@@ -8,6 +8,7 @@ import Cart from './pages/Cart';
 import Contact from './pages/Contact';
 import News from './pages/News';
 import Purchase from './pages/Purchase';
+import About from './pages/AboutUs';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/productos" element={<Products />} />
           <Route path="/novedades" element={<News />} />
+          <Route path="/nosotros" element={<About />} />
           <Route path="/producto/:id" element={<ProductDetail />} />
           <Route path="/carrito" element={<Cart />} />
           <Route path="/contacto" element={<Contact />} />

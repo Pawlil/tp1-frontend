@@ -55,6 +55,10 @@ function StoreNavbar() {
               Contacto
             </Nav.Link>
 
+            <Nav.Link as={NavLink} to="/nosotros">
+              Nosotros
+            </Nav.Link>
+
             <Nav.Link
               as={NavLink}
               to="/carrito"

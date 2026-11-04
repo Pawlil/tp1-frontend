@@ -107,8 +107,8 @@ export const PurchaseForm = () => {
                                 value={formData.dni}
                                 onChange={handleChange}
                             />
+                            {errors.dni && (<div className="invalid-feedback d-block">{errors.dni}</div>)}
                         </div>
-                        {errors.dni && (<div className="invalid-feedback d-block">{errors.dni}</div>)}
 
                         {/* EMAIL */}
                         <div className="col-md-6">
@@ -125,8 +125,8 @@ export const PurchaseForm = () => {
                                 value={formData.email}
                                 onChange={handleChange}
                             />
+                            {errors.email && (<div className="invalid-feedback d-block">{errors.email}</div>)}
                         </div>
-                        {errors.email && (<div className="invalid-feedback d-block">{errors.email}</div>)}
 
                         {/* TELEFONO */}
                         <div className="col-md-6">
@@ -143,14 +143,14 @@ export const PurchaseForm = () => {
                                 value={formData.phone}
                                 onChange={handleChange}
                             />
+                            {errors.phone && (<div className="invalid-feedback d-block">{errors.phone}</div>)}
                         </div>
-                        {errors.phone && (<div className="invalid-feedback d-block">{errors.phone}</div>)}
 
                     </div>
 
                 </section>
 
-                
+
                 {/* DIRECCION DE ENVIO */}
 
                 <section className="purchase-section">
@@ -180,8 +180,8 @@ export const PurchaseForm = () => {
                                 value={formData.address}
                                 onChange={handleChange}
                             />
+                            {errors.address && (<div className="invalid-feedback d-block">{errors.address}</div>)}
                         </div>
-                        {errors.address && (<div className="invalid-feedback d-block">{errors.address}</div>)}
 
                         {/* DEPARTAMENTO */}
                         <div className="col-md-4">
@@ -215,8 +215,8 @@ export const PurchaseForm = () => {
                                 value={formData.city}
                                 onChange={handleChange}
                             />
+                            {errors.city && (<div className="invalid-feedback d-block">{errors.city}</div>)}
                         </div>
-                        {errors.city && (<div className="invalid-feedback d-block">{errors.city}</div>)}
 
                         {/* PROVINCIA */}
                         <div className="col-md-6">
@@ -257,8 +257,8 @@ export const PurchaseForm = () => {
                                 <option value="Tierra del Fuego">Tierra del Fuego</option>
                                 <option value="Tucumán">Tucumán</option>
                             </select>
+                            {errors.province && (<div className="invalid-feedback d-block">{errors.province}</div>)}
                         </div>
-                        {errors.province && (<div className="invalid-feedback d-block">{errors.province}</div>)}
 
                         {/* CODIGO POSTAL */}
                         <div className="col-md-4">
@@ -275,8 +275,8 @@ export const PurchaseForm = () => {
                                 value={formData.postalCode}
                                 onChange={handleChange}
                             />
+                            {errors.postalCode && (<div className="invalid-feedback d-block">{errors.postalCode}</div>)}
                         </div>
-                        {errors.postalCode && (<div className="invalid-feedback d-block">{errors.postalCode}</div>)}
 
                     </div>
 
@@ -393,7 +393,7 @@ export const PurchaseForm = () => {
                     {errors.payment && (<div className="text-danger small mt-2">{errors.payment}</div>)}
 
                 </section>
-                
+
 
                 {/* COMENTARIOS */}
 

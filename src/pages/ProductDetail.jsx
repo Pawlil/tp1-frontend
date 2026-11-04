@@ -9,6 +9,8 @@ import { Heart, HeartFill } from "react-bootstrap-icons";
 import { useFavorites } from "../context/FavoritesContext";
 
 
+
+
 function ProductDetail() {
   const { id } = useParams();
   const book = books.find((b) => b.id === parseInt(id, 10));
@@ -18,7 +20,9 @@ function ProductDetail() {
   const precioAnterior = tieneOferta
     ? book.price * 1.2
     : null;
-  const { addToCart } = useCart();
+  const { addToCart, cartItems, updateQuantity } = useCart();
+
+
   const { toggleFavorito, esFavorito } = useFavorites();
 
 
@@ -47,12 +51,16 @@ function ProductDetail() {
   const hayStock = stock > 0;
 
   function agregarAlCarrito() {
+    const enCarrito = cartItems.find((item) => item.id === book.id)?.quantity || 0;
     const resultado = addToCart(book);
+
     if (resultado) {
+      updateQuantity(book.id, enCarrito + cantidad);
       setAgregado(true);
       setTimeout(() => setAgregado(false), 1500);
     }
   }
+
 
   return (
     <Container className="detalle-producto py-5">

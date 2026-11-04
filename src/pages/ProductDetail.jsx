@@ -169,7 +169,8 @@ function ProductDetail() {
 
           <div className="acciones-compra mt-3">
             {hayStock && (
-              <Button as={Link} to="/compra" className="btn-comprar">
+              <Button as={Link} to="/compra" onClick={agregarAlCarrito} className="btn-comprar">
+
                 COMPRAR
               </Button>
             )}

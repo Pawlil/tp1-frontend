@@ -36,4 +36,4 @@ Pasos para clonar y ejecutar la aplicación:
 4. **Abrir el link de localhost proporcionado en la consola.**
 
 ## Link al deploy:
-agregar link si lo hacemos...
+ https://biblio-tec-unahur.netlify.app 

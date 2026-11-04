@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { validatePurchaseForm } from "../validators/purchaseValidators.js";
+import { validatePurchaseForm } from "../validators/PurchaseValidators.js";
 import "./PurchaseForm.css";
 
 export const PurchaseForm = () => {

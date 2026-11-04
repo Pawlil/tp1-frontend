@@ -23,14 +23,6 @@
   border-radius: 4px;
 }
 
-.btn-azul {
-  background-color: var(--color-primary) !important;
-  border-color: var(--color-primary) !important;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  transition: opacity 0.2s ease;
-}
-
 .btn-azul:hover {
   opacity: 0.9;
 }
@@ -211,3 +203,55 @@
   color: #212529;
   font-weight: 600;
 }
+
+
+.acciones-compra {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.btn-favorito-detalle {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFFFFF;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  color: #3157D5;
+  transition: border-color 0.2s ease;
+}
+
+.btn-favorito-detalle:hover {
+  border-color: #3157D5;
+}
+
+.btn-favorito-detalle.activo {
+  color: #E0245E;
+}
+
+.lista-especificaciones {
+  list-style: none;
+  max-width: 340px;
+  margin: 0;
+  padding: 0;
+}
+
+.lista-especificaciones li {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 0;
+  padding: 8px 0;
+  border-bottom: 1px solid #e9ecef;
+}
+
+@media (min-width: 768px) {
+  .detalle-imagen {
+    margin: 0;
+  }
+}
+

@@ -159,30 +159,23 @@ function ProductDetail() {
 
           </div>
 
-          {/* BOTON COMPRAR */}
+          <div className="acciones-compra mt-3">
+            {hayStock && (
+              <Button as={Link} to="/compra" className="btn-comprar">
+                COMPRAR
+              </Button>
+            )}
 
-          <div className="mt-3">
-            <Button
-              as={Link}
-              to="/compra"
-              disabled={!hayStock}
-              className="btn-comprar"
-            >
-              COMPRAR
-            </Button>
-
-            <Button
-              variant="outline-secondary"
+            <button
+              type="button"
+              className={`btn-favorito-detalle ${esFavorito(book.id) ? "activo" : ""}`}
               onClick={() => toggleFavorito(book.id)}
-              className="d-inline-flex align-items-center gap-2 px-3 py-2"
+              aria-label={esFavorito(book.id) ? "Quitar de favoritos" : "Agregar a favoritos"}
+              title={esFavorito(book.id) ? "Quitar de favoritos" : "Agregar a favoritos"}
             >
-              {esFavorito(book.id) ? <HeartFill color="#E0245E" /> : <Heart />}
-              {esFavorito(book.id) ? "EN FAVORITOS" : "AGREGAR A FAVORITOS"}
-            </Button>
-
+              {esFavorito(book.id) ? <HeartFill size={22} /> : <Heart size={22} />}
+            </button>
           </div>
-
-          {/* BOTON COMPRAR */}
 
           {mensaje && (
             <div
@@ -214,8 +207,12 @@ function ProductDetail() {
               </Button>
             </Form>
           </div>
+        </Col>
+      </Row>
 
-          <section className="mt-5">
+      <Row className="g-4 mt-4">
+        <Col md={5}>
+          <section>
             <h4>Especificaciones</h4>
             <ul className="lista-especificaciones">
               <li><strong>Categoría:</strong> {category}</li>
@@ -228,8 +225,10 @@ function ProductDetail() {
               <li><strong>Idioma:</strong> Español</li>
             </ul>
           </section>
+        </Col>
 
-          <section className="mt-4">
+        <Col md={7}>
+          <section>
             <h4>Sinopsis</h4>
             <p>{description}</p>
           </section>
